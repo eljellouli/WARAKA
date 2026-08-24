@@ -12,6 +12,18 @@
 <link rel="canonical" href="https://sattr.vercel.app/">
 <meta name="theme-color" content="#F3ECDD">
 
+<!-- ============================================================
+     Google AdSense — auto ads / library loader
+     استبدل ca-pub-XXXXXXXXXXXXXXXX برقم الناشر (Publisher ID) الحقيقي بتاعك
+     ============================================================ -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+<!-- ============================================================
+     Media.net — مكتبة السياق (Contextual library)
+     استبدل YOUR_MEDIANET_CID برقم الـ Customer ID الحقيقي بتاعك من لوحة تحكم Media.net
+     ============================================================ -->
+<script type="text/javascript" src="https://contextual.media.net/dmedianet.js?cid=YOUR_MEDIANET_CID" async="async"></script>
+
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sattr.vercel.app/">
@@ -127,6 +139,1649 @@
     --stamp-red: #D4726B;
     --stamp-red-deep: #B85950;
   }
+  body[data-theme="dark"] header{
+    background: linear-gradient(180deg, rgba(29,41,51,.82), rgba(29,41,51,.6));
+  }
+  body[data-theme="dark"] .editor{
+    background-image: repeating-linear-gradient(var(--paper-white), var(--paper-white) 37px, var(--paper-line-soft) 38px);
+  }
+  .theme-toggle{
+    width:36px; height:36px; border-radius:8px; border:1px solid var(--paper-line); background: var(--paper-white);
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; color: var(--ink);
+  }
+  .theme-toggle:hover{ background: var(--paper-line-soft); }
+  .theme-toggle .ti-moon{ display:none; }
+  body[data-theme="dark"] .theme-toggle .ti-sun{ display:none; }
+  body[data-theme="dark"] .theme-toggle .ti-moon{ display:inline; }
+
+  /* Sidebar: search + folders */
+  .sidebar-search{ padding: 14px 14px 4px; }
+  .sidebar-search input{
+    width:100%; border:1px solid var(--paper-line); background: var(--paper-white); border-radius:8px;
+    padding: 8px 12px; font-size:13px; color: var(--ink); outline:none;
+  }
+  .sidebar-search input:focus{ border-color: var(--plum); }
+
+  .folder-list{ display:flex; flex-wrap:wrap; gap:6px; padding: 12px 14px 6px; }
+  .folder-chip{
+    font-size:12px; padding: 5px 12px; border-radius:20px; border:1px solid var(--paper-line);
+    background: transparent; color: var(--ink-soft); white-space:nowrap;
+  }
+  .folder-chip.active{ background: var(--ink); color: var(--paper-white); border-color: var(--ink); }
+  .folder-chip.add{ color: var(--stamp-red); border-style:dashed; }
+
+  /* Templates gallery */
+  .tmpl-card{
+    width:100%; max-width: 560px; background: var(--paper-white);
+    border:1px solid var(--paper-line); border-radius: 4px 4px 2px 2px;
+    box-shadow: 0 30px 60px -20px rgba(31,44,56,.5);
+    padding: 30px 32px 34px; position:relative;
+  }
+  .tmpl-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:8px; }
+  .tmpl-item{
+    text-align:right; border:1px solid var(--paper-line); border-radius:10px; padding: 16px; background: var(--paper);
+  }
+  .tmpl-item:hover{ border-color: var(--stamp-red); }
+  .tmpl-item .ic{ font-size:20px; margin-bottom:8px; display:block; }
+  .tmpl-item .tn{ font-weight:700; font-size:14px; margin-bottom:3px; }
+  .tmpl-item .td{ font-size:12px; color: var(--ink-soft); line-height:1.6; }
+
+  .btn{
+    border:1px solid var(--paper-line); background: var(--paper-white);
+    color: var(--ink); border-radius: 8px; padding: 9px 16px;
+    font-size: 14px; font-weight:500; display:inline-flex; align-items:center; gap:8px;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .btn:hover{ box-shadow: var(--shadow); transform: translateY(-1px); }
+  .btn:active{ transform: translateY(0); }
+  .btn-primary{
+    background: var(--ink); color: var(--paper-white); border-color: var(--ink);
+  }
+  .btn-primary:hover{ background:#14202a; }
+  .btn-ghost{ background: transparent; border-color: transparent; }
+  .btn-ghost:hover{ background: var(--paper-line-soft); box-shadow:none; transform:none; }
+  .btn-danger{ background: var(--stamp-red); color:#fff; border-color: var(--stamp-red); }
+  .btn-danger:hover{ background: var(--stamp-red-deep); }
+
+  .confirm-card{
+    width:100%; max-width: 360px; background: var(--paper-white); border:1px solid var(--paper-line);
+    border-radius: 4px 4px 2px 2px; box-shadow: 0 30px 60px -20px rgba(31,44,56,.5);
+    padding: 26px 28px 28px; animation: cardIn .18s ease;
+  }
+  .confirm-actions{ display:flex; gap:10px; margin-top:18px; justify-content:flex-end; }
+
+  .shortcuts-card{
+    width:100%; max-width: 420px; background: var(--paper-white); border:1px solid var(--paper-line);
+    border-radius: 4px 4px 2px 2px; box-shadow: 0 30px 60px -20px rgba(31,44,56,.5);
+    padding: 28px 30px 30px; position:relative; animation: cardIn .18s ease;
+  }
+  .shortcuts-list{ display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+  .sc-row{ display:flex; align-items:center; gap:8px; font-size:13.5px; }
+  .sc-row span{ margin-inline-start:auto; color: var(--ink-soft); }
+  kbd{
+    font-family: var(--font-mono); font-size:11.5px; background: var(--paper-line-soft);
+    border: 1px solid var(--paper-line); border-bottom-width:2px; border-radius:5px; padding: 2px 7px;
+  }
+  .btn-sm{ padding: 6px 11px; font-size: 12.5px; }
+
+  /* ---------- Layout ---------- */
+  .layout{ flex:1; display:flex; min-height:0; }
+
+  .sidebar{
+    width: 268px; flex-shrink:0; border-left: 1px solid var(--paper-line);
+    background: rgba(255,253,246,.5);
+    display:flex; flex-direction:column;
+  }
+  .sidebar-head{
+    padding: 16px 18px 10px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .sidebar-head h2{ font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; color: var(--ink-soft); font-weight:700; margin:0; }
+  .note-count{ font-family: var(--font-mono); font-size:11px; color: var(--ink-soft); background:var(--paper-line-soft); padding:2px 7px; border-radius:20px; }
+
+  .note-list{ flex:1; overflow-y:auto; padding: 4px 10px 16px; display:flex; flex-direction:column; gap:4px; }
+  .note-item{
+    position:relative; padding: 10px 14px 10px 48px; border-radius:8px; cursor:pointer;
+    border:1px solid transparent;
+  }
+  .note-item:hover{ background: var(--paper-line-soft); }
+  .note-item.active{ background: var(--paper-white); border-color: var(--paper-line); box-shadow: var(--shadow); }
+  .note-item .tab{
+    position:absolute; right:0; top:8px; bottom:8px; width:4px; border-radius:3px;
+  }
+  .note-item .tt{ font-weight:600; font-size:14px; margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .note-item .meta{ font-size:11.5px; color:var(--ink-soft); display:flex; align-items:center; gap:6px; }
+  .note-item .item-actions{
+    position:absolute; left:6px; top:50%; transform: translateY(-50%);
+    display:flex; gap:2px; opacity:0;
+  }
+  .note-item:hover .item-actions{ opacity:1; }
+  .note-item .item-actions button{
+    font-size:13px; color: var(--ink-soft); background:none; border:none; padding:5px; border-radius:5px;
+  }
+  .note-item .item-actions .del{ color: var(--stamp-red); }
+  .note-item .item-actions button:hover{ background: var(--paper-white); color: var(--ink); }
+  .note-item .item-actions .del:hover{ color: var(--stamp-red-deep); }
+
+  .empty-sidebar{ padding: 30px 20px; text-align:center; color:var(--ink-soft); font-size:13px; }
+
+  /* ---------- Page / editor ---------- */
+  main.page-wrap{ flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; padding: 28px 24px 0; overflow-y:auto; }
+
+  .page{
+    width:100%; max-width: 760px; background: var(--paper-white);
+    border:1px solid var(--paper-line); border-radius: 6px 6px 2px 2px;
+    box-shadow: var(--shadow);
+    padding: 34px 40px 46px;
+    min-height: 60vh;
+    position:relative;
+  }
+  .page::before{
+    content:""; position:absolute; top:0; right:56px; width:1.5px; bottom:0;
+    background: linear-gradient(180deg, transparent, var(--amber) 15%, var(--stamp-red) 50%, var(--plum) 85%, transparent);
+    opacity:.4;
+    pointer-events:none;
+  }
+  .page::after{
+    content:""; position:absolute; top:0; right:0; left:0; height:3px; border-radius: 6px 6px 0 0;
+    background: linear-gradient(90deg, var(--amber), var(--stamp-red), var(--plum));
+  }
+
+  .note-title{
+    display:block; width:100%; border:none; background:transparent; outline:none;
+    font-family: var(--font-display); font-weight:700; font-size: clamp(24px, 3.4vw, 32px);
+    color: var(--ink); margin-bottom: 14px; padding-bottom: 12px;
+    border-bottom: 1px dashed var(--paper-line);
+  }
+  .note-title::placeholder{ color: #B9AF98; }
+
+  .toolbar{ display:flex; align-items:center; gap:4px; margin-bottom:16px; }
+  .tb-btn{
+    width:30px; height:30px; border-radius:6px; border:1px solid transparent; background:transparent;
+    display:flex; align-items:center; justify-content:center; color: var(--ink-soft); font-size:14px; font-weight:700;
+    padding: 0 4px;
+  }
+  .tb-btn[data-cmd="formatBlock"], .tb-btn[data-cmd="removeFormat"]{ width:auto; min-width:30px; font-size:11.5px; }
+  .tb-btn:hover{ background: var(--paper-line-soft); color: var(--ink); }
+  .tb-btn.active{ background: var(--ink); color: var(--paper-white); }
+  .tb-sep{ width:1px; height:18px; background: var(--paper-line); margin: 0 6px; }
+
+  .editor{
+    min-height: 320px; outline:none; line-height: 2.15;
+    font-size: 16.5px; color: var(--ink);
+    background-image: repeating-linear-gradient(var(--paper-white), var(--paper-white) 37px, var(--paper-line-soft) 38px);
+    background-attachment: local;
+  }
+  .editor:empty::before{ content: attr(data-placeholder); color:#B9AF98; }
+  .editor b, .editor strong{ color: var(--ink); }
+  .editor h2{ font-family: var(--font-display); font-size:24px; margin: 12px 0 6px; }
+  .editor h3{ font-family: var(--font-display); font-size:19px; margin: 10px 0 6px; }
+  .editor blockquote{
+    margin: 10px 0; padding: 4px 16px; border-right: 3px solid var(--stamp-red);
+    color: var(--ink-soft); font-style:italic;
+  }
+
+  /* ---------- Footer bar ---------- */
+  .page-footer{
+    width:100%; max-width: 760px; margin: 16px 0 32px; display:flex; align-items:center;
+    justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .status-cluster{ display:flex; align-items:center; gap:14px; font-size:12.5px; color: var(--ink-soft); }
+  .save-status{ display:flex; align-items:center; gap:6px; }
+  .save-dot{ width:7px; height:7px; border-radius:50%; background: var(--amber); transition: background .2s; }
+  .save-dot.saved{ background:#6C8F5B; }
+  .wordcount{ font-family: var(--font-mono); }
+
+  .footer-actions{ display:flex; align-items:center; gap:8px; }
+
+  /* Wax stamp privacy toggle — signature element */
+  .stamp{
+    position:relative; width:64px; height:64px; border-radius:50%;
+    border: 2.5px solid var(--stamp-red); color: var(--stamp-red);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background: transparent; transform: rotate(-8deg);
+    transition: transform .18s ease, border-color .18s ease, color .18s ease;
+    flex-shrink:0;
+  }
+  .stamp::before{
+    content:""; position:absolute; inset:6px; border-radius:50%; border: 1px dashed currentColor; opacity:.55;
+  }
+  .stamp span{ font-family: var(--font-mono); font-size:9.5px; font-weight:600; line-height:1.25; letter-spacing:.02em; }
+  .stamp:hover{ transform: rotate(-8deg) scale(1.05); }
+  .stamp.private{ border-color: var(--plum); color: var(--plum); }
+  .stamp.password{ border-color: var(--ink); color: var(--ink); }
+
+  .privacy-block{ display:flex; align-items:center; gap:10px; }
+  .privacy-info{ font-size:12px; color: var(--ink-soft); max-width:150px; line-height:1.5; }
+  .privacy-info b{ color: var(--ink); display:block; font-size:13px; margin-bottom:1px; }
+  .pw-field{
+    display:none; align-items:center; gap:6px; margin-top:6px;
+  }
+  .pw-field.show{ display:flex; }
+  .pw-field input{
+    border:1px solid var(--paper-line); border-radius:6px; padding:5px 8px; font-size:12.5px; width:110px; background: var(--paper-white);
+    letter-spacing: 2px;
+  }
+  .pw-toggle{
+    border:1px solid var(--paper-line); background: var(--paper-white); border-radius:6px;
+    width:26px; height:26px; font-size:12px; display:flex; align-items:center; justify-content:center;
+    opacity:.6; flex-shrink:0;
+  }
+  .pw-toggle:hover{ opacity:1; }
+
+  #btnDeleteNote{ color: var(--stamp-red); align-self:flex-start; }
+  #btnDeleteNote:hover{ background: var(--stamp-red); color: var(--paper-white); }
+
+  .share-row{ display:flex; align-items:center; gap:8px; }
+  .share-link{
+    font-family: var(--font-mono); font-size:12px; color: var(--ink-soft);
+    background: var(--paper-line-soft); border-radius:6px; padding:7px 10px;
+    max-width: 220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; direction:ltr; text-align:right;
+  }
+
+  /* Empty state */
+  .empty-page{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    padding: 90px 20px; text-align:center; color: var(--ink-soft);
+  }
+  .empty-page h3{ font-family: var(--font-display); font-size:24px; color: var(--ink); margin:0; }
+  .empty-page p{ margin:0; font-size:14px; max-width:340px; }
+
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: var(--paper-white); padding:10px 18px; border-radius:8px;
+    font-size:13px; opacity:0; transition: all .25s ease; pointer-events:none; z-index:50;
+  }
+  .toast.show{ opacity:1; transform: translateX(-50%) translateY(0); }
+  .toast--undo{
+    display:flex; align-items:center; gap:14px; pointer-events:none;
+  }
+  .toast--undo.show{ pointer-events:auto; }
+  .toast--undo button{
+    background: var(--amber); color: var(--ink); border:none; border-radius:6px;
+    padding: 4px 12px; font-size:12.5px; font-weight:700; flex-shrink:0;
+  }
+  .toast--undo button:hover{ background: var(--amber-deep); }
+
+  @media (max-width: 860px){
+    header{ padding: 14px 16px; }
+    .layout{ flex-direction:column; }
+    .sidebar{ width:100%; max-height: 180px; border-left:none; border-bottom:1px solid var(--paper-line); }
+    .note-list{ flex-direction:row; overflow-x:auto; overflow-y:hidden; }
+    .note-item{ min-width:180px; padding-right:16px; }
+    .note-item .tab{ display:none; }
+    main.page-wrap{ padding: 18px 14px 0; }
+    .page{ padding: 22px 18px 30px; }
+    .page::before{ display:none; }
+    .page-footer{ flex-direction:column; align-items:stretch; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; animation: none !important; }
+  }
+
+  @media print{
+    header, .sidebar, .marketing, .ad-slot, .cta-band, .site-footer,
+    .toolbar, .page-footer, .modal-overlay, .toast{ display:none !important; }
+    body{ background: #fff; }
+    .layout, main.page-wrap{ display:block; padding:0; }
+    .page{ box-shadow:none; border:none; max-width:100%; padding:0; }
+    .editor{ background-image:none; }
+  }
+
+  /* ---------- Auth ---------- */
+  .user-chip{
+    display:flex; align-items:center; gap:9px; padding: 5px 6px 5px 14px; border-radius: 30px;
+    border:1px solid var(--paper-line); background: var(--paper-white); font-size:13px;
+  }
+  .user-chip .avatar{
+    width:26px; height:26px; border-radius:50%; background: var(--plum); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;
+    font-family: var(--font-display);
+  }
+  .user-chip button{ border:none; background:none; color: var(--ink-soft); font-size:12px; padding:2px; }
+  .user-chip button:hover{ color: var(--stamp-red); }
+
+  .modal-overlay{
+    position:fixed; inset:0; background: rgba(31,44,56,.45); backdrop-filter: blur(2px);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:20px;
+  }
+  .modal-overlay.show{ display:flex; }
+
+  .auth-card{
+    width:100%; max-width: 380px; background: var(--paper-white);
+    border:1px solid var(--paper-line); border-radius: 4px 4px 2px 2px;
+    box-shadow: 0 30px 60px -20px rgba(31,44,56,.5);
+    padding: 30px 32px 34px; position:relative;
+    animation: cardIn .22s ease;
+  }
+  @keyframes cardIn{ from{ opacity:0; transform: translateY(10px) rotate(-.6deg); } to{ opacity:1; transform: translateY(0) rotate(0); } }
+  .auth-card::before{
+    content:""; position:absolute; top:0; right:44px; left:44px; height:1px;
+    background: linear-gradient(90deg, transparent, var(--paper-line), transparent);
+  }
+  .auth-close{
+    position:absolute; top:14px; left:14px; border:none; background:none; color: var(--ink-soft);
+    font-size:16px; width:28px; height:28px; border-radius:50%;
+  }
+  .auth-close:hover{ background: var(--paper-line-soft); color: var(--ink); }
+
+  .auth-title{ font-family: var(--font-display); font-weight:700; font-size:24px; margin: 0 0 4px; }
+  .auth-sub{ font-size:12.5px; color: var(--ink-soft); margin: 0 0 20px; }
+
+  .auth-tabs{ display:flex; gap:22px; border-bottom:1px solid var(--paper-line); margin-bottom:22px; }
+  .auth-tab{
+    background:none; border:none; padding: 0 0 10px; font-size:14px; font-weight:600; color: var(--ink-soft);
+    border-bottom: 2px solid transparent; margin-bottom:-1px;
+  }
+  .auth-tab.active{ color: var(--ink); border-color: var(--stamp-red); }
+
+  .auth-panel{ display:none; flex-direction:column; gap:16px; }
+  .auth-panel.active{ display:flex; }
+
+  .field{ display:flex; flex-direction:column; gap:4px; }
+  .field label{ font-size:11.5px; color: var(--ink-soft); font-weight:600; }
+  .field input{
+    border:none; border-bottom: 1px dashed var(--paper-line); background:transparent;
+    padding: 6px 2px; font-size:15px; color: var(--ink); outline:none;
+  }
+  .field input:focus{ border-bottom-color: var(--stamp-red); }
+  .field-error{ font-size:11.5px; color: var(--stamp-red); min-height:14px; }
+
+  .auth-submit{
+    margin-top:4px; background: var(--ink); color: var(--paper-white); border:none; border-radius:8px;
+    padding: 11px; font-size:14px; font-weight:600;
+  }
+  .auth-submit:hover{ background:#14202a; }
+
+  .auth-foot{ margin-top:16px; font-size:12px; color: var(--ink-soft); text-align:center; line-height:1.6; }
+
+  /* ---------- Marketing sections (below the app) ---------- */
+  .marketing{ background: var(--paper-white); border-top: 1px solid var(--paper-line); }
+  .m-section{ max-width: 1040px; margin: 0 auto; padding: 72px 28px; }
+  .m-eyebrow{
+    font-family: var(--font-mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+    color: var(--stamp-red); margin: 0 0 10px; font-weight:600;
+  }
+  .m-heading{ font-family: var(--font-display); font-size: clamp(26px,3.4vw,38px); font-weight:700; margin:0 0 14px; }
+  .m-lead{ font-size:15.5px; color: var(--ink-soft); max-width:560px; line-height:1.8; margin:0 0 44px; }
+
+  .feature-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .feature-card{
+    padding: 24px 22px; border:1px solid var(--paper-line); border-radius:10px; background: var(--paper);
+    position:relative;
+  }
+  .feature-card .num{
+    font-family: var(--font-mono); font-size:11px; color: var(--stamp-red); font-weight:600;
+    position:absolute; top:18px; left:20px;
+  }
+  .feature-card h3{ font-family: var(--font-display); font-size:19px; margin: 6px 0 8px; }
+  .feature-card p{ font-size:13.5px; color: var(--ink-soft); line-height:1.75; margin:0; }
+
+  /* ---------- Ad slots (placeholders — wire to Google AdSense or similar later) ---------- */
+  .ad-slot{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    border: 1px dashed var(--paper-line); border-radius: 8px; background: var(--paper-line-soft);
+    color: var(--ink-soft); text-align:center;
+  }
+  .ad-label{ font-size:11px; font-weight:700; letter-spacing:.04em; }
+  .ad-size{ font-family: var(--font-mono); font-size:10px; opacity:.8; }
+  .ad-unit-label{
+    display:block; font-size:10px; font-weight:600; letter-spacing:.06em;
+    color: var(--ink-faint); text-transform:uppercase; margin-bottom:6px; text-align:center;
+  }
+  .ad-slot{ border-style:solid; background: transparent; overflow:hidden; }
+  .ad-slot--side{ margin: 4px 14px 14px; min-height: 250px; flex-direction:column; }
+  .ad-slot--banner{
+    width:100%; max-width: 760px; margin: 0 auto 8px; min-height: 90px;
+  }
+  .ad-slot--leaderboard{ max-width: 1040px; margin: 0 auto; padding: 0 28px 20px; }
+  .ad-slot--leaderboard .ad-slot{ min-height: 90px; }
+  .ad-slot--inline{
+    max-width: 320px; margin: 0 auto 40px; padding: 12px; min-height: 250px;
+    flex-direction:column; border-radius:8px;
+  }
+
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  .skip-link{
+    position:absolute; right:12px; top:-60px; z-index:200; background: var(--ink); color: var(--paper-white);
+    padding:10px 18px; border-radius:8px; font-size:13px; text-decoration:none; transition: top .15s ease;
+  }
+  .skip-link:focus{ top:12px; }
+
+  .diff-grid{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--paper-line); }
+  .diff-row{
+    display:grid; grid-template-columns: 140px 1fr 1fr; gap:20px; padding: 18px 0;
+    border-bottom:1px solid var(--paper-line); align-items:start;
+  }
+  .diff-label{ font-weight:700; font-size:13.5px; color: var(--ink); padding-top:2px; }
+  .diff-us{ font-size:13.5px; line-height:1.7; color: var(--ink); background: var(--paper); border-radius:8px; padding:10px 14px; }
+  .diff-us .chk{ color:#4C7A6F; font-weight:700; margin-left:4px; }
+  .diff-them{ font-size:13px; line-height:1.7; color: var(--ink-soft); padding:10px 14px; }
+
+  @media (max-width: 760px){
+    .diff-row{ grid-template-columns: 1fr; gap:8px; }
+  }
+
+  .faq-section{ background: var(--paper); }
+  .faq-list{ display:flex; flex-direction:column; gap:0; max-width:720px; }
+  .faq-item{ border-bottom: 1px solid var(--paper-line); }
+  .faq-q{
+    width:100%; text-align:right; background:none; border:none; padding: 20px 4px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    font-size:15.5px; font-weight:600; color: var(--ink);
+  }
+  .faq-q .plus{ font-family: var(--font-mono); font-size:18px; color: var(--stamp-red); transition: transform .2s; flex-shrink:0; }
+  .faq-item.open .plus{ transform: rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition: max-height .25s ease; }
+  .faq-item.open .faq-a{ max-height:200px; }
+  .faq-a p{ margin: 0 4px 20px; font-size:13.5px; color: var(--ink-soft); line-height:1.8; max-width:600px; }
+
+  .cta-band{
+    background: var(--ink); color: var(--paper-white); text-align:center; padding: 60px 28px;
+  }
+  .cta-band h2{ font-family: var(--font-display); font-size: clamp(24px,3vw,32px); margin: 0 0 10px; }
+  .cta-band p{ color: #C7D0D8; font-size:14px; margin: 0 0 26px; }
+  .cta-band .btn-primary{ background: var(--amber); border-color: var(--amber); color: var(--ink); padding:12px 26px; }
+  .cta-band .btn-primary:hover{ background:#EBB53C; }
+
+  footer.site-footer{ background: var(--paper-white); border-top:1px solid var(--paper-line); }
+  .footer-grid{
+    max-width:1040px; margin:0 auto; padding: 56px 28px 30px;
+    display:grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 28px;
+  }
+  .footer-brand .brand-mark{ font-size:22px; }
+  .footer-brand p{ font-size:12.5px; color: var(--ink-soft); line-height:1.75; margin: 12px 0 0; max-width:220px; }
+  .footer-col h4{ font-size:12px; text-transform:uppercase; letter-spacing:.06em; color: var(--ink-soft); margin:0 0 14px; }
+  .footer-col a{ display:block; font-size:13.5px; color: var(--ink); text-decoration:none; margin-bottom:10px; }
+  .footer-col a:hover{ color: var(--stamp-red); }
+  .footer-bottom{
+    max-width:1040px; margin:0 auto; padding: 18px 28px 34px; border-top:1px solid var(--paper-line-soft);
+    font-size:12px; color: var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width: 760px){
+    .feature-grid{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<a href="#pageWrap" class="skip-link">تخطَّ إلى المحتوى الرئيسي</a>
+<div id="app">
+  <h1 class="sr-only">ورقة — دفتر ملاحظات إلكتروني عربي مجاني، اكتب وشارك وصدّر ملاحظاتك بسهولة بلا تسجيل</h1>
+
+  <header role="banner">
+    <div class="brand">
+      <span class="brand-mark">ورقة</span>
+      <span class="brand-sub">دفتر ملاحظات إلكتروني عربي</span>
+    </div>
+    <nav class="header-nav" aria-label="التنقل الرئيسي">
+      <button class="btn btn-ghost btn-sm" id="btnTemplates">القوالب</button>
+      <button class="btn btn-ghost btn-sm" id="btnShortcuts" title="اختصارات لوحة المفاتيح (؟)" aria-label="اختصارات لوحة المفاتيح">⌨</button>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" title="تبديل المظهر" aria-label="تبديل المظهر الداكن">
+        <span class="ti-sun">☀</span><span class="ti-moon">☾</span>
+      </button>
+      <div id="authSlot"></div>
+      <button class="btn btn-primary" id="btnNew">+ ملاحظة جديدة</button>
+    </div>
+  </header>
+
+  <div class="modal-overlay" id="authOverlay">
+    <div class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="auth-close" id="authClose" aria-label="إغلاق">✕</button>
+      <div class="auth-title" id="authTitle">مرحبًا بك</div>
+      <p class="auth-sub">سجّل الدخول للاحتفاظ بملاحظاتك والاستفادة من ميزات إضافية.</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">تسجيل الدخول</button>
+        <button class="auth-tab" data-tab="signup">إنشاء حساب</button>
+      </div>
+
+      <form class="auth-panel active" id="loginPanel" data-panel="login">
+        <div class="field">
+          <label for="loginEmail">البريد الإلكتروني</label>
+          <input id="loginEmail" type="email" placeholder="name@example.com" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="loginPassword">كلمة السر</label>
+          <input id="loginPassword" type="password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <div class="field-error" id="loginError"></div>
+        <button type="submit" class="auth-submit">دخول</button>
+        <div class="auth-foot">ليس لديك حساب؟ <a href="#" data-switch="signup">أنشئ حسابًا</a></div>
+      </form>
+
+      <form class="auth-panel" id="signupPanel" data-panel="signup">
+        <div class="field">
+          <label for="signupName">الاسم</label>
+          <input id="signupName" type="text" placeholder="اسمك الكامل" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="signupEmail">البريد الإلكتروني</label>
+          <input id="signupEmail" type="email" placeholder="name@example.com" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="signupPassword">كلمة السر</label>
+          <input id="signupPassword" type="password" placeholder="٨ أحرف على الأقل" autocomplete="new-password">
+        </div>
+        <div class="field-error" id="signupError"></div>
+        <button type="submit" class="auth-submit">إنشاء الحساب</button>
+        <div class="auth-foot">لديك حساب بالفعل؟ <a href="#" data-switch="login">تسجيل الدخول</a></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="templatesOverlay">
+    <div class="tmpl-card" role="dialog" aria-modal="true" aria-labelledby="tmplTitle">
+      <button class="auth-close" id="templatesClose" aria-label="إغلاق">✕</button>
+      <div class="auth-title" id="tmplTitle">القوالب الجاهزة</div>
+      <p class="auth-sub">ابدأ من قالب جاهز بدلًا من الصفحة البيضاء.</p>
+      <div class="tmpl-grid" id="tmplGrid"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="confirmOverlay">
+    <div class="confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <div class="auth-title" id="confirmTitle">تأكيد الحذف</div>
+      <p class="auth-sub" id="confirmDeleteText">هل تريد حذف هذه الملاحظة؟</p>
+      <div class="confirm-actions">
+        <button class="btn btn-ghost" id="confirmCancel">إلغاء</button>
+        <button class="btn btn-danger" id="confirmOk">حذف نهائيًا</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="shortcutsOverlay">
+    <div class="shortcuts-card" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle">
+      <button class="auth-close" id="shortcutsClose" aria-label="إغلاق">✕</button>
+      <div class="auth-title" id="shortcutsTitle">اختصارات لوحة المفاتيح</div>
+      <div class="shortcuts-list">
+        <div class="sc-row"><kbd>Ctrl</kbd> + <kbd>N</kbd><span>ملاحظة جديدة</span></div>
+        <div class="sc-row"><kbd>Ctrl</kbd> + <kbd>S</kbd><span>حفظ فوري</span></div>
+        <div class="sc-row"><kbd>Ctrl</kbd> + <kbd>F</kbd><span>البحث</span></div>
+        <div class="sc-row"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd><span>تبديل الوضع الداكن</span></div>
+        <div class="sc-row"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd><span>تصدير PDF</span></div>
+        <div class="sc-row"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd><span>نسخ رابط الملاحظة</span></div>
+        <div class="sc-row"><kbd>Esc</kbd><span>إغلاق أي نافذة</span></div>
+        <div class="sc-row"><kbd>?</kbd><span>عرض هذه القائمة</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar" role="complementary" aria-label="الملاحظات والمجلدات">
+      <div class="sidebar-search">
+        <input type="text" id="searchInput" placeholder="ابحث في ملاحظاتك…">
+      </div>
+
+      <div class="folder-list" id="folderList"></div>
+
+      <div class="sidebar-head">
+        <h2>الملاحظات</h2>
+        <span class="note-count" id="noteCount">0</span>
+      </div>
+      <div class="note-list" id="noteList"></div>
+
+      <!-- ==== Zone A: مربع الشريط الجانبي — إعلانان مكدّسان (وليس متراكبين) ==== -->
+      <div class="ad-slot ad-slot--side">
+        <span class="ad-unit-label">إعلان</span>
+        <!-- 1) Google AdSense — 300x250 -->
+        <ins class="adsbygoogle"
+             style="display:block;width:300px;height:250px"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="YYYYYYYYYY"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="ad-slot ad-slot--side">
+        <span class="ad-unit-label">إعلان</span>
+        <!-- 2) Adsterra — Native Banner (تكيّفي الحجم) -->
+        <script async data-cfasync="false" src="https://pl30977857.profitableratecpmnetwork.com/fa13a3f890b6ce4ce9b4163b6b84289d/invoke.js"></script>
+        <div id="container-fa13a3f890b6ce4ce9b4163b6b84289d"></div>
+      </div>
+    </aside>
+
+    <main class="page-wrap" id="pageWrap" aria-label="محرر الملاحظة" tabindex="-1"></main>
+  </div>
+</div>
+
+<div class="marketing">
+  <section class="m-section" id="features">
+    <p class="m-eyebrow">كل ما يمكنك فعله</p>
+    <h2 class="m-heading">أكثر من مجرد ورقة بيضة</h2>
+    <p class="m-lead">من الكتابة السريعة دون تسجيل، إلى المشاركة والتصدير — كل ذلك في مكانٍ واحد وبسيط.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="num">٠١</span>
+        <h3>احفظ وشارك برابط</h3>
+        <p>لكل ملاحظة رابط خاص يمكنك مشاركته مع أي شخص. حدّد ما إذا كانت عامة، خاصة، أو محمية بكلمة مرور.</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">٠٢</span>
+        <h3>حفظ توماتيكي</h3>
+        <p>يحفظ «ورقة» عملك أثناء الكتابة تلقائيًا — لا داعي للقلق بشأن الحفظ، حتى إن أغلقت الصفحة.</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">٠٣</span>
+        <h3>بدون تسجيل</h3>
+        <p>ابدأ الكتابة فورًا — بدون حساب، وبدون بريد إلكتروني. وإذا رغبت في المجلدات والمزامنة بين الأجهزة، أنشئ حسابًا مجانيًا.</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">٠٤</span>
+        <h3>خاص وآمن</h3>
+        <p>أنت من يقرر من يمكنه رؤية كل ملاحظة — ويمكنك تغيير حالتها بين عامة وخاصة ومحمية بكلمة مرور في أي وقت.</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">٠٥</span>
+        <h3>تصدير PDF أو Word</h3>
+        <p>محتاج الملاحظة بره المتصفح؟ صدرها كملف PDF أو Word بضغطة وحدة، بالتنسيق كاملا.</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">٠٦</span>
+        <h3>نص عادي، منسق، وقوائم مهام</h3>
+        <p>محرر نص غني، قوائم مهام قابلة للتحديد، ومجلدات لتنظيم كل شيء — كل ذلك داخل الدفتر نفسه.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section diff-section" id="why">
+    <p class="m-eyebrow">لماذا ورقة</p>
+    <h2 class="m-heading">ما الذي يميزنا عن المنافسين؟</h2>
+    <p class="m-lead">السوق مليء بأدوات المفكرة الإلكترونية، لكن جلّها مبني للمستخدم الأجنبي أولًا. هذا ما يجعل «ورقة» مختلفًا:</p>
+
+    <div class="diff-grid">
+      <div class="diff-row">
+        <div class="diff-label">اللغة والاتجاه</div>
+        <div class="diff-us"><span class="chk">✓</span> واجهة عربية فصحى أصيلة، مبنية بامتداد RTL من الأساس — لا ترجمة آلية لاحقة</div>
+        <div class="diff-them">واجهات مترجمة جزئيًا فوق تصميم إنجليزي أصلي</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-label">التنظيم</div>
+        <div class="diff-us"><span class="chk">✓</span> مجلدات، بحث فوري، وقوالب جاهزة تناسب الاستخدام العربي (يوميات، اجتماعات، تسوق)</div>
+        <div class="diff-them">غالبًا قائمة ملاحظات مسطّحة بلا تصنيف حقيقي</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-label">الخصوصية</div>
+        <div class="diff-us"><span class="chk">✓</span> تحكم كامل: عامة، خاصة، أو محمية بكلمة مرور — لكل ملاحظة على حدة</div>
+        <div class="diff-them">أغلب الأدوات المجانية تجعل كل شيء عامًا افتراضيًا</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-label">التصدير</div>
+        <div class="diff-us"><span class="chk">✓</span> تصدير حقيقي إلى PDF وWord وTXT بضغطة واحدة، بلا حاجة لأدوات خارجية</div>
+        <div class="diff-them">تصدير محدود أو مخفي خلف اشتراك مدفوع</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-label">المظهر</div>
+        <div class="diff-us"><span class="chk">✓</span> وضع داكن وفاتح، وهوية بصرية مستوحاة من الدفتر الورقي الحقيقي</div>
+        <div class="diff-them">قوالب بصرية عامة وغير مميزة</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section faq-section" id="faq">
+    <p class="m-eyebrow">أسئلة شائعة</p>
+    <h2 class="m-heading">هل لديك سؤال؟</h2>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q" aria-expanded="true"><span>هل «ورقة» مجاني؟</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>نعم، «ورقة» دفتر ملاحظات مجاني بالكامل. يمكنك كتابة الملاحظات وحفظها ومشاركتها دون أي رسوم.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>هل أحتاج إلى حساب لكتابة ملاحظة؟</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>لا. يمكنك البدء بالكتابة فورًا دون تسجيل. إنشاء حساب مجاني يتيح لك تنظيم الملاحظات في مجلدات وفتحها من أي جهاز.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>هل تُحفظ ملاحظاتي تلقائيًا؟</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>نعم، يحفظ «ورقة» عملك تلقائيًا أثناء الكتابة، فيبقى محفوظًا حتى إن أغلقت الصفحة أو انقطع الاتصال.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>هل يمكنني مشاركة ملاحظة مع شخص آخر؟</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>نعم. لكل ملاحظة رابط خاص يمكنك إرساله. ويمكنك جعلها عامة أو محمية بكلمة مرور حسب رغبتك.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>هل يمكنني تنزيل ملاحظاتي؟</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>نعم، يمكنك تصدير أي ملاحظة كملف PDF أو مستند Word بضغطة واحدة.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==== Zone B: البانر الكبير 970x90 — Media.net ====
+     الصق هنا كود Media.net الحقيقي بالضبط كما هو في لوحة التحكم بتاعك
+     (كل حساب Media.net عنده Ad Unit ID مختلف شكله وهمي هنا) -->
+<div class="ad-slot ad-slot--leaderboard">
+  <span class="ad-unit-label">إعلان</span>
+  <div id="MEDIANET_AD_UNIT_ID_970x90"></div>
+</div>
+
+<!-- ==== Zone D: مربع 300x250 إضافي داخل المحتوى — Adsterra ====
+     هذا هو نفس كود Adsterra اللي كان محطوط غلط في مكان الـ970x90، رجّعناه لحجمه الصحيح -->
+<div class="ad-slot ad-slot--inline">
+  <span class="ad-unit-label">إعلان</span>
+  <script>
+  atOptions = {
+    'key' : 'c2ce2499598541ed2930966975a0f764',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+  </script>
+  <script src="https://www.highrevenueformat.com/c2ce2499598541ed2930966975a0f764/invoke.js"></script>
+</div>
+
+<div class="cta-band">
+  <h2>ابدأ كتابة أول ملاحظة الآن</h2>
+  <p>بدون تسجيل وبدون تكلفة — تستغرق دقيقة واحدة.</p>
+  <button class="btn btn-primary" id="btnCtaNew">+ ملاحظة جديدة</button>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-mark">ورقة</span>
+      <p>دفتر ملاحظات إلكتروني سريع ونظيف. اكتب وشارك دون حساب، وحمّل ملاحظاتك بصيغة PDF أو Word.</p>
+    </div>
+    <div class="footer-col">
+      <h4>ورقة</h4>
+      <a href="#" class="js-soon">حول</a>
+      <a href="#features">الميزات</a>
+      <a href="#" class="js-soon">قوالب جاهزة</a>
+    </div>
+    <div class="footer-col">
+      <h4>الحساب</h4>
+      <a href="#" id="footerLogin">تسجيل الدخول</a>
+      <a href="#" id="footerSignup">إنشاء حساب</a>
+    </div>
+    <div class="footer-col">
+      <h4>المطورون</h4>
+      <a href="#" class="js-soon">واجهة API</a>
+      <a href="#" class="js-soon">تكامل الذكاء الاصطناعي</a>
+    </div>
+    <div class="footer-col">
+      <h4>قانوني</h4>
+      <a href="#" class="js-soon">الخصوصية</a>
+      <a href="#" class="js-soon">شروط الخدمة</a>
+      <a href="#" class="js-soon">الإبلاغ عن إساءة</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© ٢٠٢٦ ورقة. جميع الحقوق محفوظة.</span>
+    <span>هذه الصفحة نموذج أولي (Prototype) للتصميم فقط.</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="toast toast--undo" id="undoToast" role="status" aria-live="polite">
+  <span id="undoToastMsg"></span>
+  <button id="undoToastBtn">تراجع</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  const STORAGE_KEY = "anotepad_clone_notes_v1";
+  const FOLDERS_KEY = "anotepad_clone_folders_v1";
+  const THEME_KEY = "anotepad_clone_theme_v1";
+  const PRIVACY_LABELS = {
+    public:  { short: "عامة",         sub: "يمكن لأي شخص يملك الرابط قراءة هذه الملاحظة." },
+    private: { short: "خاصة",         sub: "لا يراها أحد سواك، محفوظة في هذا المتصفح." },
+    password:{ short: "بكلمة مرور",   sub: "يجب إدخال كلمة المرور لقراءة هذه الملاحظة." }
+  };
+  const PRIVACY_ORDER = ["public","private","password"];
+  const TAB_COLORS = ["#E0A526","#6E3B5C","#A63A34","#4C7A6F","#5A6E8C"];
+
+  const TEMPLATES = [
+    { id:"meeting", icon:"🗓️", name:"محضر اجتماع", desc:"جدول أعمال ونقاط ومتابعات",
+      title:"محضر اجتماع", content:"<p><b>التاريخ:</b> &nbsp; <b>الحضور:</b></p><p><b>جدول الأعمال</b></p><ul><li>البند الأول</li><li>البند الثاني</li></ul><p><b>القرارات والمتابعات</b></p><ul><li></li></ul>" },
+    { id:"todo", icon:"✅", name:"قائمة مهام يومية", desc:"مهامك مرتبة حسب الأولوية",
+      title:"مهام اليوم", content:"<ul><li>المهمة الأولى</li><li>المهمة الثانية</li><li>المهمة الثالثة</li></ul>" },
+    { id:"journal", icon:"📔", name:"يوميات", desc:"سجل يومك وأفكارك",
+      title:"يوميات — ", content:"<p><b>كيف كان يومي:</b></p><p></p><p><b>أفكار خطرت لي:</b></p><p></p>" },
+    { id:"shopping", icon:"🛒", name:"قائمة تسوق", desc:"لا تنسَ أي شيء من السوق",
+      title:"قائمة التسوق", content:"<ul><li></li><li></li><li></li></ul>" },
+    { id:"idea", icon:"💡", name:"فكرة مشروع", desc:"دوّن الفكرة قبل أن تنساها",
+      title:"فكرة جديدة", content:"<p><b>المشكلة:</b></p><p></p><p><b>الحل المقترح:</b></p><p></p><p><b>الخطوة التالية:</b></p><p></p>" },
+    { id:"study", icon:"📚", name:"ملخص دراسي", desc:"نظّم أفكار المادة قبل الامتحان",
+      title:"ملخص: ", content:"<p><b>الموضوع الرئيسي</b></p><p></p><h2>النقاط الأساسية</h2><ul><li></li><li></li><li></li></ul><h2>أسئلة للمراجعة</h2><ul><li></li></ul>" },
+    { id:"blank", icon:"📄", name:"صفحة فارغة", desc:"ابدأ من الصفر",
+      title:"", content:"" }
+  ];
+
+  let notes = [];
+  let folders = [];
+  let currentId = null;
+  let currentFolder = "all";
+  let searchQuery = "";
+  let saveTimer = null;
+
+  // ---------- persistence ----------
+  function load(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      notes = raw ? JSON.parse(raw) : [];
+    }catch(e){ notes = []; }
+    try{
+      const raw2 = localStorage.getItem(FOLDERS_KEY);
+      folders = raw2 ? JSON.parse(raw2) : ["شخصي","عمل"];
+    }catch(e){ folders = ["شخصي","عمل"]; }
+  }
+  function persist(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(notes)); }catch(e){}
+  }
+  function persistFolders(){
+    try{ localStorage.setItem(FOLDERS_KEY, JSON.stringify(folders)); }catch(e){}
+  }
+
+  function uid(){ return "n" + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+  function newNote(tmpl){
+    const n = {
+      id: uid(),
+      title: tmpl ? tmpl.title : "",
+      content: tmpl ? tmpl.content : "",
+      privacy: "public",
+      password: "",
+      folder: currentFolder !== "all" ? currentFolder : null,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    };
+    notes.unshift(n);
+    currentId = n.id;
+    persist();
+    renderAll();
+    syncUrl();
+    requestAnimationFrame(()=>{
+      const t = document.querySelector(".note-title");
+      if(t){ t.focus(); if(tmpl) t.setSelectionRange(t.value.length, t.value.length); }
+    });
+  }
+
+  function duplicateNote(id){
+    const src = notes.find(n=> n.id === id);
+    if(!src) return;
+    const copy = { ...src, id: uid(), title: (src.title || "بدون عنوان") + " (نسخة)", createdAt: Date.now(), updatedAt: Date.now() };
+    const idx = notes.findIndex(n=> n.id === id);
+    notes.splice(idx + 1, 0, copy);
+    currentId = copy.id;
+    persist();
+    renderAll();
+    syncUrl();
+    showToast("تم نسخ الملاحظة ✓");
+  }
+
+  function syncUrl(){
+    try{
+      const url = new URL(window.location.href);
+      if(currentId) url.searchParams.set("n", currentId);
+      else url.searchParams.delete("n");
+      window.history.replaceState({}, "", url);
+    }catch(e){ /* ignore in restricted preview contexts */ }
+  }
+
+  function getCurrent(){ return notes.find(n=>n.id===currentId) || null; }
+
+  let pendingDelete = null; // { note, index } — held for a few seconds so the user can undo
+  let noteAwaitingDeleteId = null;
+
+  function deleteNote(id, evt){
+    if(evt) evt.stopPropagation();
+    const n = notes.find(x=> x.id === id);
+    if(!n) return;
+    noteAwaitingDeleteId = id;
+    document.getElementById("confirmDeleteText").textContent =
+      `هل تريد حذف «${n.title || "بدون عنوان"}»؟`;
+    document.getElementById("confirmOverlay").classList.add("show");
+  }
+
+  function performDelete(id){
+    const idx = notes.findIndex(n=> n.id === id);
+    if(idx === -1) return;
+    const [removed] = notes.splice(idx, 1);
+    pendingDelete = { note: removed, index: idx };
+    if(currentId === id){ currentId = notes.length ? notes[0].id : null; }
+    persist();
+    renderAll();
+    syncUrl();
+    showUndoToast(`تم حذف «${removed.title || "بدون عنوان"}»`);
+  }
+
+  function undoDelete(){
+    if(!pendingDelete) return;
+    notes.splice(pendingDelete.index, 0, pendingDelete.note);
+    currentId = pendingDelete.note.id;
+    pendingDelete = null;
+    persist();
+    renderAll();
+    syncUrl();
+  }
+
+  function selectNote(id){
+    currentId = id;
+    renderAll();
+    syncUrl();
+  }
+
+  // ---------- rendering ----------
+  function renderAll(){ renderSidebar(); renderPage(); }
+
+  function fmtDate(ts){
+    const d = new Date(ts);
+    return d.toLocaleDateString("ar-MA", { day:"numeric", month:"short" }) + " · " +
+           d.toLocaleTimeString("ar-MA", { hour:"2-digit", minute:"2-digit" });
+  }
+
+  function relativeTime(ts){
+    const diffSec = Math.round((Date.now() - ts) / 1000);
+    if(diffSec < 30) return "الآن";
+    const units = [
+      { secs: 31536000, one:"سنة", two:"سنتين", few:"سنوات", many:"سنة" },
+      { secs: 2592000,  one:"شهر", two:"شهرين", few:"أشهر", many:"شهرًا" },
+      { secs: 604800,   one:"أسبوع", two:"أسبوعين", few:"أسابيع", many:"أسبوعًا" },
+      { secs: 86400,    one:"يوم", two:"يومين", few:"أيام", many:"يومًا" },
+      { secs: 3600,     one:"ساعة", two:"ساعتين", few:"ساعات", many:"ساعة" },
+      { secs: 60,       one:"دقيقة", two:"دقيقتين", few:"دقائق", many:"دقيقة" }
+    ];
+    for(const u of units){
+      const v = Math.floor(diffSec / u.secs);
+      if(v >= 1){
+        if(v === 1) return `منذ ${u.one}`;
+        if(v === 2) return `منذ ${u.two}`;
+        if(v >= 3 && v <= 10) return `منذ ${toArabicDigits(v)} ${u.few}`;
+        return `منذ ${toArabicDigits(v)} ${u.many}`;
+      }
+    }
+    return "الآن";
+  }
+
+  const PRIVACY_ICON = { public:"🌐", private:"🔒", password:"🔑" };
+
+  function stripHtml(html){
+    const tmp = document.createElement("div");
+    tmp.innerHTML = html;
+    return tmp.textContent || "";
+  }
+
+  function renderFolders(){
+    const box = document.getElementById("folderList");
+    const chips = [`<button class="folder-chip ${currentFolder==='all'?'active':''}" data-folder="all">الكل</button>`]
+      .concat(folders.map(f=> `<button class="folder-chip ${currentFolder===f?'active':''}" data-folder="${escapeHtml(f)}">${escapeHtml(f)}</button>`))
+      .concat([`<button class="folder-chip add" id="addFolderBtn">+ مجلد</button>`]);
+    box.innerHTML = chips.join("");
+
+    box.querySelectorAll("[data-folder]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{ currentFolder = btn.dataset.folder; renderAll(); });
+    });
+    document.getElementById("addFolderBtn").addEventListener("click", ()=>{
+      const name = prompt("اسم المجلد الجديد:");
+      if(name && name.trim() && !folders.includes(name.trim())){
+        folders.push(name.trim());
+        persistFolders();
+        renderFolders();
+      }
+    });
+  }
+
+  function getFilteredNotes(){
+    return notes.filter(n=>{
+      if(currentFolder !== "all" && n.folder !== currentFolder) return false;
+      if(searchQuery){
+        const hay = (n.title + " " + stripHtml(n.content)).toLowerCase();
+        if(!hay.includes(searchQuery.toLowerCase())) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderSidebar(){
+    renderFolders();
+    const list = document.getElementById("noteList");
+    const count = document.getElementById("noteCount");
+    const filtered = getFilteredNotes();
+    count.textContent = toArabicDigits(filtered.length);
+
+    if(!notes.length){
+      list.innerHTML = '<div class="empty-sidebar">لا توجد ملاحظات بعد.<br>اضغط على «ملاحظة جديدة» للبدء.</div>';
+      return;
+    }
+    if(!filtered.length){
+      list.innerHTML = '<div class="empty-sidebar">لا توجد نتائج مطابقة.</div>';
+      return;
+    }
+
+    list.innerHTML = filtered.map((n,i)=>{
+      const preview = stripHtml(n.content).slice(0,60);
+      const title = n.title || "بدون عنوان";
+      const color = TAB_COLORS[i % TAB_COLORS.length];
+      const active = n.id === currentId ? "active" : "";
+      return `
+        <div class="note-item ${active}" data-id="${n.id}" title="${escapeHtml(fmtDate(n.updatedAt))}">
+          <span class="tab" style="background:${color}"></span>
+          <div class="tt">${escapeHtml(title)}</div>
+          <div class="meta"><span aria-hidden="true">${PRIVACY_ICON[n.privacy]}</span> ${relativeTime(n.updatedAt)}</div>
+          <div class="item-actions">
+            <button class="dup" data-dup="${n.id}" title="نسخ الملاحظة" aria-label="نسخ الملاحظة">⧉</button>
+            <button class="del" data-del="${n.id}" title="حذف" aria-label="حذف الملاحظة">✕</button>
+          </div>
+        </div>`;
+    }).join("");
+
+    list.querySelectorAll(".note-item").forEach(el=>{
+      el.addEventListener("click", ()=> selectNote(el.dataset.id));
+    });
+    list.querySelectorAll("[data-del]").forEach(btn=>{
+      btn.addEventListener("click", (e)=> deleteNote(btn.dataset.del, e));
+    });
+    list.querySelectorAll("[data-dup]").forEach(btn=>{
+      btn.addEventListener("click", (e)=>{ e.stopPropagation(); duplicateNote(btn.dataset.dup); });
+    });
+  }
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  }
+
+  function renderPage(){
+    const wrap = document.getElementById("pageWrap");
+    const n = getCurrent();
+
+    if(!n){
+      wrap.innerHTML = `
+        <div class="empty-page">
+          <h3>الصفحة بيضاء الآن</h3>
+          <p>ابدأ كتابة أول ملاحظة لك — تُسجَّل تلقائيًا في هذا المتصفح، دون الحاجة إلى تسجيل الدخول.</p>
+          <button class="btn btn-primary" id="btnEmptyNew">+ ملاحظة جديدة</button>
+        </div>`;
+      document.getElementById("btnEmptyNew").addEventListener("click", newNote);
+      return;
+    }
+
+    const pv = PRIVACY_LABELS[n.privacy];
+    wrap.innerHTML = `
+      <div class="page">
+        <input class="note-title" id="titleInput" placeholder="عنوان بدون عنوان" value="${escapeHtml(n.title)}">
+        <div class="toolbar" role="toolbar" aria-label="أدوات تنسيق النص">
+          <button class="tb-btn" data-cmd="bold" style="font-weight:900;" aria-label="عريض" title="عريض (Ctrl+B)">B</button>
+          <button class="tb-btn" data-cmd="italic" style="font-style:italic;" aria-label="مائل" title="مائل (Ctrl+I)">I</button>
+          <button class="tb-btn" data-cmd="underline" style="text-decoration:underline;" aria-label="تسطير" title="تسطير">U</button>
+          <button class="tb-btn" data-cmd="strikeThrough" style="text-decoration:line-through;" aria-label="يتوسطه خط" title="يتوسطه خط">S</button>
+          <div class="tb-sep"></div>
+          <button class="tb-btn" data-cmd="insertUnorderedList" title="قائمة" aria-label="قائمة نقطية">☰</button>
+          <button class="tb-btn" data-cmd="insertOrderedList" title="قائمة مرقمة" aria-label="قائمة مرقمة">١٢٣</button>
+          <button class="tb-btn" data-cmd="formatBlock" data-val="BLOCKQUOTE" title="اقتباس" aria-label="اقتباس">❝</button>
+          <div class="tb-sep"></div>
+          <button class="tb-btn" data-cmd="formatBlock" data-val="H2" title="عنوان رئيسي" aria-label="عنوان رئيسي">H2</button>
+          <button class="tb-btn" data-cmd="formatBlock" data-val="H3" title="عنوان فرعي" aria-label="عنوان فرعي">H3</button>
+          <button class="tb-btn" data-cmd="justifyCenter" title="توسيط" aria-label="توسيط النص">↔</button>
+          <div class="tb-sep"></div>
+          <button class="tb-btn" data-cmd="removeFormat" title="إزالة التنسيق" aria-label="إزالة التنسيق">Tx</button>
+        </div>
+        <div class="editor" id="editor" contenteditable="true" data-placeholder="اكتب هنا…">${n.content}</div>
+      </div>
+
+      <div class="page-footer">
+        <div class="status-cluster">
+          <div class="save-status"><span class="save-dot saved" id="saveDot"></span><span id="saveText">محفوظة</span></div>
+          <span class="wordcount" id="wordcount">٠ كلمة</span>
+          <span class="wordcount" id="readtime">أقل من دقيقة</span>
+        </div>
+        <div class="footer-actions">
+          <div class="share-row">
+            <span class="share-link" id="shareLink">anotepad-clone.app/n/${n.id}</span>
+            <button class="btn btn-ghost btn-sm" id="btnCopy">نسخ الرابط</button>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="btnTxt">TXT</button>
+          <button class="btn btn-ghost btn-sm" id="btnDoc">Word</button>
+          <button class="btn btn-ghost btn-sm" id="btnPdf">PDF</button>
+        </div>
+      </div>
+
+      <div class="page-footer" style="margin-top:-10px;">
+        <div class="privacy-block">
+          <button class="stamp ${n.privacy!=='public'?n.privacy:''}" id="stampBtn">
+            <span>${pv.short}</span>
+          </button>
+          <div class="privacy-info">
+            <b>${pv.short}</b>
+            ${pv.sub}
+            <div class="pw-field ${n.privacy==='password'?'show':''}" id="pwField">
+              <input type="password" id="pwInput" placeholder="كلمة المرور" value="${escapeHtml(n.password||"")}" autocomplete="off">
+              <button type="button" class="pw-toggle" id="pwToggle" aria-label="إظهار كلمة المرور" title="إظهار/إخفاء">👁</button>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="btnDeleteNote" aria-label="حذف هذه الملاحظة">حذف الملاحظة</button>
+      </div>
+
+      <div class="ad-slot ad-slot--banner" id="adBannerSlot">
+        <span class="ad-unit-label">إعلان</span>
+      </div>
+    `;
+
+    // ملاحظة مهمة: أي <script> يوضع داخل innerHTML لا ينفّذه المتصفح إطلاقًا.
+    // لهذا كانت إعلانات هذا الصندوق (728×90) لا تظهر أبدًا رغم وجود الكود.
+    // الحل: نبني عناصر <script> حقيقية عبر JS وندرجها يدويًا، في كل مرة تُفتح فيها ملاحظة.
+    loadBannerAd();
+
+    wireEditor(n);
+  }
+
+  // يحقن إعلان Adsterra (728x90) داخل صندوق البانر بطريقة تُنفَّذ فعليًا من المتصفح.
+  function loadBannerAd(){
+    const slot = document.getElementById("adBannerSlot");
+    if(!slot) return;
+
+    // نمسح أي محاولة سابقة (لو المستخدم بدّل بين الملاحظات بسرعة) لتفادي تكرار الإعلان
+    slot.querySelectorAll(".ad-injected").forEach(el=> el.remove());
+
+    const cfgScript = document.createElement("script");
+    cfgScript.className = "ad-injected";
+    cfgScript.text = `
+      atOptions = {
+        'key' : 'f341c634f40a2a630c21442bc24e9830',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    `;
+    slot.appendChild(cfgScript);
+
+    const invokeScript = document.createElement("script");
+    invokeScript.className = "ad-injected";
+    invokeScript.src = "https://www.highrevenueformat.com/f341c634f40a2a630c21442bc24e9830/invoke.js";
+    slot.appendChild(invokeScript);
+  }
+
+  function wireEditor(n){
+    const titleInput = document.getElementById("titleInput");
+    const editor = document.getElementById("editor");
+    const stampBtn = document.getElementById("stampBtn");
+    const pwField = document.getElementById("pwField");
+    const pwInput = document.getElementById("pwInput");
+
+    titleInput.addEventListener("input", ()=>{
+      n.title = titleInput.value;
+      queueSave();
+      // live-update sidebar title without full re-render jank
+      const item = document.querySelector(`.note-item[data-id="${n.id}"] .tt`);
+      if(item) item.textContent = n.title || "بدون عنوان";
+    });
+
+    editor.addEventListener("input", ()=>{
+      n.content = editor.innerHTML;
+      updateWordcount();
+      queueSave();
+      syncToolbarState();
+    });
+    editor.addEventListener("keyup", syncToolbarState);
+    editor.addEventListener("mouseup", syncToolbarState);
+    editor.addEventListener("focus", syncToolbarState);
+
+    document.querySelectorAll(".tb-btn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        editor.focus();
+        document.execCommand(btn.dataset.cmd, false, btn.dataset.val || null);
+        n.content = editor.innerHTML;
+        queueSave();
+        syncToolbarState();
+      });
+    });
+
+    function syncToolbarState(){
+      const stateCmds = { bold:"bold", italic:"italic", underline:"underline", strikeThrough:"strikeThrough", justifyCenter:"justifyCenter" };
+      document.querySelectorAll(".tb-btn[data-cmd]").forEach(btn=>{
+        const cmd = stateCmds[btn.dataset.cmd];
+        if(!cmd) return;
+        try{ btn.classList.toggle("active", document.queryCommandState(cmd)); }catch(e){ /* ignore */ }
+      });
+    }
+
+    stampBtn.addEventListener("click", ()=>{
+      const idx = PRIVACY_ORDER.indexOf(n.privacy);
+      n.privacy = PRIVACY_ORDER[(idx+1) % PRIVACY_ORDER.length];
+      queueSave(true);
+      renderPage();
+    });
+
+    if(pwInput){
+      pwInput.addEventListener("input", ()=>{
+        n.password = pwInput.value;
+        queueSave();
+      });
+    }
+    document.getElementById("pwToggle").addEventListener("click", ()=>{
+      const showing = pwInput.type === "text";
+      pwInput.type = showing ? "password" : "text";
+      const btn = document.getElementById("pwToggle");
+      btn.setAttribute("aria-label", showing ? "إظهار كلمة المرور" : "إخفاء كلمة المرور");
+      btn.textContent = showing ? "👁" : "🙈";
+    });
+
+    document.getElementById("btnDeleteNote").addEventListener("click", ()=>{
+      deleteNote(n.id);
+    });
+
+    document.getElementById("btnCopy").addEventListener("click", ()=>{
+      const link = `https://anotepad-clone.app/n/${n.id}`;
+      copyToClipboard(link);
+    });
+
+    document.getElementById("btnTxt").addEventListener("click", ()=> exportTxt(n));
+    document.getElementById("btnDoc").addEventListener("click", ()=> exportDoc(n));
+    document.getElementById("btnPdf").addEventListener("click", ()=> exportPdf(n));
+
+    updateWordcount();
+  }
+
+  function updateWordcount(){
+    const editor = document.getElementById("editor");
+    if(!editor) return;
+    const text = stripHtml(editor.innerHTML).trim();
+    const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
+    document.getElementById("wordcount").textContent = toArabicDigits(words) + " كلمة";
+
+    const rt = document.getElementById("readtime");
+    if(rt){
+      const minutes = Math.ceil(words / 200); // ~200 words/min average reading speed
+      rt.textContent = words === 0 ? "أقل من دقيقة" : (minutes <= 1 ? "أقل من دقيقة" : `${toArabicDigits(minutes)} دقائق قراءة`);
+    }
+  }
+
+  function toArabicDigits(num){
+    const map = ["٠","١","٢","٣","٤","٥","٦","٧","٨","٩"];
+    return String(num).replace(/\d/g, d=>map[d]);
+  }
+
+  function queueSave(immediate){
+    const dot = document.getElementById("saveDot");
+    const text = document.getElementById("saveText");
+    if(dot){ dot.classList.remove("saved"); }
+    if(text){ text.textContent = "جارٍ الحفظ…"; }
+    clearTimeout(saveTimer);
+    const doSave = ()=>{
+      const n = getCurrent();
+      if(n) n.updatedAt = Date.now();
+      persist();
+      renderSidebar();
+      if(dot) dot.classList.add("saved");
+      if(text) text.textContent = "محفوظة";
+    };
+    if(immediate) doSave(); else saveTimer = setTimeout(doSave, 500);
+  }
+
+  // ---------- export ----------
+  function exportTxt(n){
+    const text = (n.title || "بدون عنوان") + "\n\n" + stripHtml(n.content);
+    downloadBlob(new Blob([text], {type:"text/plain;charset=utf-8"}), (n.title||"ملاحظة") + ".txt");
+    showToast("تصدير TXT ✓");
+  }
+
+  function exportDoc(n){
+    const html = `<!DOCTYPE html><html dir="rtl"><head><meta charset="utf-8">
+      <style>body{font-family:Arial;} h1{font-size:20pt;}</style></head>
+      <body><h1>${escapeHtml(n.title||"بدون عنوان")}</h1>${n.content}</body></html>`;
+    downloadBlob(new Blob(["\ufeff", html], {type:"application/msword"}), (n.title||"ملاحظة") + ".doc");
+    showToast("تصدير Word ✓");
+  }
+
+  function exportPdf(n){
+    try{
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const text = (n.title || "بدون عنوان") + "\n\n" + stripHtml(n.content);
+      const lines = doc.splitTextToSize(text, 180);
+      doc.text(lines, 15, 20);
+      doc.save((n.title||"ملاحظة") + ".pdf");
+      showToast("تصدير PDF ✓");
+    }catch(e){
+      showToast("تعذر تصدير PDF");
+    }
+  }
+
+  function copyToClipboard(text){
+    // Some sandboxed preview contexts block navigator.clipboard entirely,
+    // so we fall back to a manual select + execCommand, and finally to a
+    // visible prompt the person can copy from by hand as a last resort.
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text)
+        .then(()=> showToast("تم نسخ الرابط ✓"))
+        .catch(()=> fallbackCopy(text));
+    }else{
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text){
+    try{
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      if(ok){ showToast("تم نسخ الرابط ✓"); return; }
+    }catch(e){ /* fall through */ }
+    window.prompt("تعذّر النسخ التلقائي — انسخ الرابط يدويًا:", text);
+  }
+
+  function downloadBlob(blob, filename){
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function showToast(msg){
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(()=> t.classList.remove("show"), 1800);
+  }
+
+  function showUndoToast(msg){
+    const t = document.getElementById("undoToast");
+    document.getElementById("undoToastMsg").textContent = msg;
+    t.classList.add("show");
+    clearTimeout(showUndoToast._t);
+    showUndoToast._t = setTimeout(()=>{
+      t.classList.remove("show");
+      pendingDelete = null; // undo window has closed
+    }, 5000);
+  }
+  document.getElementById("undoToastBtn").addEventListener("click", ()=>{
+    document.getElementById("undoToast").classList.remove("show");
+    clearTimeout(showUndoToast._t);
+    undoDelete();
+  });
+
+  // ---------- auth (demo only — real password hashing/session must live on a real backend) ----------
+  const USERS_KEY = "anotepad_clone_users_v1";
+  const SESSION_KEY = "anotepad_clone_session_v1";
+
+  function loadUsers(){
+    try{ return JSON.parse(localStorage.getItem(USERS_KEY)) || []; }catch(e){ return []; }
+  }
+  function saveUsers(list){ localStorage.setItem(USERS_KEY, JSON.stringify(list)); }
+  function getSession(){
+    try{ return JSON.parse(localStorage.getItem(SESSION_KEY)); }catch(e){ return null; }
+  }
+  function setSession(user){
+    if(user) localStorage.setItem(SESSION_KEY, JSON.stringify({ id:user.id, name:user.name, email:user.email }));
+    else localStorage.removeItem(SESSION_KEY);
+    renderHeaderAuth();
+  }
+  // NOTE for the developer: this stores passwords in plain text in localStorage purely so the
+  // demo is functional client-side. A real build must send credentials to a server over HTTPS
+  // and hash/salt passwords there (e.g. bcrypt/argon2) — never trust or store them in the browser.
+  function initials(name){
+    return (name||"؟").trim().slice(0,1).toUpperCase();
+  }
+
+  function renderHeaderAuth(){
+    const slot = document.getElementById("authSlot");
+    const session = getSession();
+    if(session){
+      slot.innerHTML = `
+        <div class="user-chip">
+          <span class="avatar">${initials(session.name)}</span>
+          <span>${escapeHtml(session.name)}</span>
+          <button id="btnLogout" title="تسجيل الخروج">خروج</button>
+        </div>`;
+      document.getElementById("btnLogout").addEventListener("click", ()=>{
+        setSession(null);
+        showToast("تم تسجيل الخروج");
+      });
+    }else{
+      slot.innerHTML = `<button class="btn btn-ghost" id="btnLogin">تسجيل الدخول</button>`;
+      document.getElementById("btnLogin").addEventListener("click", openAuth);
+    }
+  }
+
+  function openAuth(){ document.getElementById("authOverlay").classList.add("show"); }
+  function closeAuth(){ document.getElementById("authOverlay").classList.remove("show"); clearAuthErrors(); }
+  function clearAuthErrors(){
+    document.getElementById("loginError").textContent = "";
+    document.getElementById("signupError").textContent = "";
+  }
+  function switchAuthTab(tab){
+    document.querySelectorAll(".auth-tab").forEach(t=> t.classList.toggle("active", t.dataset.tab===tab));
+    document.querySelectorAll(".auth-panel").forEach(p=> p.classList.toggle("active", p.dataset.panel===tab));
+    clearAuthErrors();
+  }
+
+  document.getElementById("authClose").addEventListener("click", closeAuth);
+  document.getElementById("authOverlay").addEventListener("click", (e)=>{
+    if(e.target.id === "authOverlay") closeAuth();
+  });
+  document.querySelectorAll(".auth-tab").forEach(t=>{
+    t.addEventListener("click", ()=> switchAuthTab(t.dataset.tab));
+  });
+  document.querySelectorAll("[data-switch]").forEach(a=>{
+    a.addEventListener("click", (e)=>{ e.preventDefault(); switchAuthTab(a.dataset.switch); });
+  });
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  document.getElementById("loginPanel").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+    const password = document.getElementById("loginPassword").value;
+    const err = document.getElementById("loginError");
+    if(!EMAIL_RE.test(email)){ err.textContent = "صيغة البريد الإلكتروني غير صحيحة."; return; }
+    const user = loadUsers().find(u=> u.email === email && u.password === password);
+    if(!user){ err.textContent = "البريد الإلكتروني أو كلمة السر غير صحيحة."; return; }
+    err.textContent = "";
+    setSession(user);
+    closeAuth();
+    showToast(`مرحبًا بك، ${user.name} 👋`);
+  });
+
+  document.getElementById("signupPanel").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim().toLowerCase();
+    const password = document.getElementById("signupPassword").value;
+    const err = document.getElementById("signupError");
+
+    if(!name || !email || !password){ err.textContent = "عمر جميع الحقول من فضلك."; return; }
+    if(!EMAIL_RE.test(email)){ err.textContent = "صيغة البريد الإلكتروني غير صحيحة."; return; }
+    if(password.length < 8){ err.textContent = "كلمة المرور يجب ألا تقل عن ٨ أحرف."; return; }
+    const users = loadUsers();
+    if(users.some(u=> u.email === email)){ err.textContent = "هذا البريد الإلكتروني مسجَّل من قبل."; return; }
+
+    const user = { id: uid(), name, email, password };
+    users.push(user);
+    saveUsers(users);
+    err.textContent = "";
+    setSession(user);
+    closeAuth();
+    showToast(`تم إنشاء الحساب، مرحبًا بك ${name} 🎉`);
+  });
+
+  // ---------- marketing interactions ----------
+  document.querySelectorAll(".faq-item").forEach(item=>{
+    item.querySelector(".faq-q").addEventListener("click", ()=>{
+      const wasOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item").forEach(i=>{
+        i.classList.remove("open");
+        i.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+      });
+      if(!wasOpen){
+        item.classList.add("open");
+        item.querySelector(".faq-q").setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  document.getElementById("btnCtaNew").addEventListener("click", ()=>{
+    newNote();
+    document.querySelector(".layout").scrollIntoView({ behavior:"smooth" });
+  });
+  document.getElementById("footerLogin").addEventListener("click", (e)=>{ e.preventDefault(); openAuth(); switchAuthTab("login"); });
+  document.getElementById("footerSignup").addEventListener("click", (e)=>{ e.preventDefault(); openAuth(); switchAuthTab("signup"); });
+
+  // ---------- search ----------
+  document.getElementById("searchInput").addEventListener("input", (e)=>{
+    searchQuery = e.target.value.trim();
+    renderSidebar();
+  });
+
+  // ---------- theme (dark mode) ----------
+  function applyTheme(theme){
+    document.body.setAttribute("data-theme", theme);
+    try{ localStorage.setItem(THEME_KEY, theme); }catch(e){}
+  }
+  document.getElementById("themeToggle").addEventListener("click", ()=>{
+    const current = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    applyTheme(current === "dark" ? "light" : "dark");
+  });
+
+  // ---------- templates ----------
+  function renderTemplates(){
+    const grid = document.getElementById("tmplGrid");
+    grid.innerHTML = TEMPLATES.map(t=> `
+      <button class="tmpl-item" data-tmpl="${t.id}">
+        <span class="ic">${t.icon}</span>
+        <div class="tn">${escapeHtml(t.name)}</div>
+        <div class="td">${escapeHtml(t.desc)}</div>
+      </button>`).join("");
+    grid.querySelectorAll("[data-tmpl]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const t = TEMPLATES.find(x=> x.id === btn.dataset.tmpl);
+        closeTemplates();
+        newNote(t);
+      });
+    });
+  }
+  function openTemplates(){ document.getElementById("templatesOverlay").classList.add("show"); }
+  function closeTemplates(){ document.getElementById("templatesOverlay").classList.remove("show"); }
+  document.getElementById("btnTemplates").addEventListener("click", openTemplates);
+  document.getElementById("templatesClose").addEventListener("click", closeTemplates);
+  document.getElementById("templatesOverlay").addEventListener("click", (e)=>{
+    if(e.target.id === "templatesOverlay") closeTemplates();
+  });
+
+  // ---------- delete confirmation dialog ----------
+  function closeConfirm(){
+    document.getElementById("confirmOverlay").classList.remove("show");
+    noteAwaitingDeleteId = null;
+  }
+  document.getElementById("confirmCancel").addEventListener("click", closeConfirm);
+  document.getElementById("confirmOverlay").addEventListener("click", (e)=>{
+    if(e.target.id === "confirmOverlay") closeConfirm();
+  });
+  document.getElementById("confirmOk").addEventListener("click", ()=>{
+    if(noteAwaitingDeleteId) performDelete(noteAwaitingDeleteId);
+    closeConfirm();
+  });
+
+  // ---------- keyboard shortcuts help dialog ----------
+  function openShortcuts(){ document.getElementById("shortcutsOverlay").classList.add("show"); }
+  document.getElementById("btnShortcuts").addEventListener("click", openShortcuts);
+  function closeShortcuts(){ document.getElementById("shortcutsOverlay").classList.remove("show"); }
+  document.getElementById("shortcutsClose").addEventListener("click", closeShortcuts);
+  document.getElementById("shortcutsOverlay").addEventListener("click", (e)=>{
+    if(e.target.id === "shortcutsOverlay") closeShortcuts();
+  });
+
+  document.querySelectorAll(".js-soon").forEach(a=>{
+    a.addEventListener("click", (e)=>{ e.preventDefault(); showToast("هذه الصفحة قيد الإعداد قريبًا"); });
+  });
+
+  // ---------- global keyboard shortcuts ----------
+  document.addEventListener("keydown", (e)=>{
+    const anyModalOpen = ["authOverlay","templatesOverlay","confirmOverlay","shortcutsOverlay"]
+      .some(id=> document.getElementById(id).classList.contains("show"));
+
+    if(e.key === "Escape"){
+      if(document.getElementById("authOverlay").classList.contains("show")) closeAuth();
+      if(document.getElementById("templatesOverlay").classList.contains("show")) closeTemplates();
+      if(document.getElementById("confirmOverlay").classList.contains("show")) closeConfirm();
+      if(document.getElementById("shortcutsOverlay").classList.contains("show")) closeShortcuts();
+      return;
+    }
+
+    if(anyModalOpen) return; // don't fire app shortcuts while a dialog is open
+
+    const typingInField = ["INPUT","TEXTAREA"].includes(document.activeElement.tagName) || document.activeElement.isContentEditable;
+
+    // "?" shows the shortcuts help — but not while typing
+    if(e.key === "?" && !typingInField){
+      e.preventDefault(); openShortcuts(); return;
+    }
+
+    if(e.ctrlKey || e.metaKey){
+      const k = e.key.toLowerCase();
+      if(k === "n" && !e.shiftKey){ e.preventDefault(); newNote(); return; }
+      if(k === "s"){ e.preventDefault(); queueSave(true); showToast("تم الحفظ ✓"); return; }
+      if(k === "f" && !e.shiftKey){ e.preventDefault(); document.getElementById("searchInput").focus(); return; }
+      if(k === "l" && e.shiftKey){
+        e.preventDefault();
+        const cur = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        applyTheme(cur === "dark" ? "light" : "dark");
+        return;
+      }
+      if(k === "p" && e.shiftKey){
+        e.preventDefault();
+        const n = getCurrent();
+        if(n) exportPdf(n);
+        return;
+      }
+      if(k === "c" && e.shiftKey){
+        e.preventDefault();
+        const n = getCurrent();
+        if(n) copyToClipboard(`https://sattr.vercel.app/n/${n.id}`);
+        return;
+      }
+    }
+  });
+
+  // ---------- welcome message for first-time visitors ----------
+  function maybeShowWelcome(){
+    try{
+      if(localStorage.getItem("anotepad_clone_visited_v1")) return;
+      localStorage.setItem("anotepad_clone_visited_v1", "1");
+      setTimeout(()=> showToast("مرحبًا بك في ورقة 👋 اكتب أول ملاحظة، أو جرّب Ctrl+N"), 900);
+    }catch(e){ /* ignore */ }
+  }
+
+  // ---------- deep link: open note from ?n=<id> on load ----------
+  function readNoteIdFromUrl(){
+    try{
+      return new URL(window.location.href).searchParams.get("n");
+    }catch(e){ return null; }
+  }
+
+  // ---------- init ----------
+  document.getElementById("btnNew").addEventListener("click", ()=> newNote());
+
+  load();
+  { const urlId = readNoteIdFromUrl();
+    currentId = (urlId && notes.some(n=> n.id === urlId)) ? urlId : (notes.length ? notes[0].id : null); }
+  renderTemplates();
+  applyTheme(localStorage.getItem(THEME_KEY) || "light");
+  renderAll();
+  renderHeaderAuth();
+  maybeShowWelcome();
+
+})();
+</script>
+</body>
+</html>  }
   body[data-theme="dark"] header{
     background: linear-gradient(180deg, rgba(29,41,51,.82), rgba(29,41,51,.6));
   }
