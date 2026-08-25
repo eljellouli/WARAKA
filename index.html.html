@@ -81,6 +81,7 @@
 
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
+  html{ -webkit-text-size-adjust:100%; }
   body{
     background: var(--paper);
     background-image:
@@ -89,7 +90,9 @@
     color: var(--ink);
     font-family: var(--font-body);
     min-height: 100vh;
+    min-height: 100dvh;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; /* شبكة أمان — يمنع أي عنصر ثابت العرض (زي إعلانات 728/970px) من تسبيب سكرول أفقي على الهاتف */
   }
 
   ::selection{ background: var(--amber); color: var(--ink); }
@@ -403,16 +406,80 @@
   .toast--undo button:hover{ background: var(--amber-deep); }
 
   @media (max-width: 860px){
-    header{ padding: 14px 16px; }
+    header{ padding: 12px 14px; gap:8px; flex-wrap:wrap; }
+    .brand-sub{ display:none; } /* الوصف الفرعي مش ضروري على شاشة ضيقة — نوفر المساحة للأزرار */
+    .header-nav{ gap:2px; }
+    .header-actions{ gap:6px; }
     .layout{ flex-direction:column; }
-    .sidebar{ width:100%; max-height: 180px; border-left:none; border-bottom:1px solid var(--paper-line); }
-    .note-list{ flex-direction:row; overflow-x:auto; overflow-y:hidden; }
-    .note-item{ min-width:180px; padding-right:16px; }
+    .sidebar{ width:100%; border-left:none; border-bottom:1px solid var(--paper-line); }
+    .sidebar-search{ padding: 10px 10px 4px; }
+    .folder-list{ padding: 8px 10px 4px; }
+    .sidebar-head{ padding: 10px 12px 6px; }
+    .note-list{
+      flex-direction:row; overflow-x:auto; overflow-y:hidden;
+      max-height: 96px; /* شريط أفقي قصير للملاحظات بدل ما ياكل نص الشاشة */
+      -webkit-overflow-scrolling: touch;
+    }
+    .note-item{ min-width:170px; padding:10px 12px; flex-shrink:0; }
     .note-item .tab{ display:none; }
-    main.page-wrap{ padding: 18px 14px 0; }
-    .page{ padding: 22px 18px 30px; }
+    .note-item .item-actions{ opacity:1; } /* على اللمس مفيش hover، فنخلي أزرار النسخ/الحذف ظاهرة دايمًا */
+
+    /* الإعلانات الجانبية (300×250 مكدّسة) تاخد مساحة كبيرة جدًا فوق الهاتف — نرتبها أفقيًا جنب بعض بدل الرأسي */
+    .ad-slot--side{ display:inline-flex; width:47%; margin: 8px 1.5% 10px; min-height:120px; vertical-align:top; }
+    .sidebar{ display:flex; flex-wrap:wrap; }
+    .sidebar-search, .folder-list, .sidebar-head{ flex:1 1 100%; }
+    .note-list{ flex:1 1 100%; }
+
+    main.page-wrap{ padding: 16px 12px 0; }
+    .page{ padding: 20px 16px 28px; border-radius:4px; }
     .page::before{ display:none; }
-    .page-footer{ flex-direction:column; align-items:stretch; }
+    .note-title{ font-size:22px; }
+    .toolbar{ flex-wrap:wrap; gap:2px; row-gap:6px; }
+    .editor{ min-height: 240px; font-size:15.5px; }
+    .page-footer{ flex-direction:column; align-items:stretch; gap:12px; }
+    .footer-actions{ flex-wrap:wrap; }
+    .share-link{ max-width: 100%; flex:1; }
+    .privacy-block{ flex-wrap:wrap; }
+    .privacy-info{ max-width:100%; }
+
+    /* البانرات العريضة (970×90 / 728×90) إعلانات بحجم ثابت لا تتجاوب مع الشاشة —
+       ضغطها بـ CSS يقصّها أو يشوّهها بدل ما يصغّرها، وده يخالف شروط أغلب الشبكات الإعلانية.
+       الحل الصحيح: نخفيها على الهاتف ونعرض بدلها صندوق 300×250 المتجاوب فقط. */
+    .ad-slot--leaderboard, .ad-slot--banner{ display:none; }
+
+    .m-section{ padding: 48px 18px; }
+    .feature-grid{ grid-template-columns:1fr; }
+    .diff-row{ grid-template-columns: 1fr; gap:8px; }
+    .footer-grid{ grid-template-columns: 1fr; gap:26px; padding: 40px 20px 20px; }
+    .footer-bottom{ flex-direction:column; gap:6px; padding: 14px 20px 26px; }
+
+    .ad-slot--inline{ max-width: 100%; margin: 0 auto 32px; padding: 10px; }
+
+    .modal-overlay{ padding:14px; overflow-y:auto; align-items:flex-start; }
+    .auth-card, .tmpl-card, .confirm-card, .shortcuts-card{
+      max-width: 100%; padding: 22px 20px 26px; margin: 20px auto;
+      max-height: none;
+    }
+    .tmpl-grid{ grid-template-columns: 1fr; }
+
+    /* إدخالات النصوص أقل من 16px بتخلي آيفون يكبّر الشاشة تلقائيًا عند الضغط عليها — مزعج جدًا */
+    .sidebar-search input, .pw-field input, .field input{ font-size:16px; }
+
+    /* أهداف لمس أكبر شوية للأصابع بدل أزرار صغيرة مصممة للماوس */
+    .tb-btn{ width:36px; height:36px; }
+    .auth-close{ width:34px; height:34px; font-size:18px; }
+    .pw-toggle{ width:32px; height:32px; }
+
+    .empty-page{ padding: 60px 16px; }
+  }
+
+  @media (max-width: 420px){
+    .brand-mark{ font-size:22px; }
+    .header-actions .btn-primary{ padding:8px 12px; font-size:13px; }
+    .header-nav .btn-sm{ padding:6px 8px; font-size:12px; }
+    .ad-slot--side{ width:100%; margin: 6px 0 10px; } /* شاشة ضيقة جدًا — إعلان جانب واحد في كل سطر بدل اتنين */
+    .note-title{ font-size:20px; }
+    .stamp{ width:54px; height:54px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -730,12 +797,22 @@
       <!-- ==== Zone A: مربع الشريط الجانبي — إعلانان مكدّسان (وليس متراكبين) ==== -->
       <div class="ad-slot ad-slot--side">
         <span class="ad-unit-label">إعلان</span>
-        <!-- 1) Google AdSense — 300x250 -->
+        <!-- 1) Google AdSense — تنسيق متجاوب (يتمدد مع عرض الصندوق تلقائيًا، بما في ذلك على الهاتف) -->
         <ins class="adsbygoogle"
-             style="display:block;width:300px;height:250px"
+             style="display:block"
              data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="YYYYYYYYYY"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+             data-ad-slot="YYYYYYYYYY"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          // تشغيل الإعلان فقط لو استُبدل الـ Publisher ID الحقيقي — لو لسه placeholder،
+          // منسيبوش الكود يحاول يتنفذ بقيمة غير صالحة (ده كان بيسبب خطأ JS يوقف الصفحة).
+          try{
+            if(!document.querySelector('ins[data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"]')){
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+          }catch(e){ /* لا نكسر باقي الصفحة لو فشل تحميل الإعلان */ }
+        </script>
       </div>
 
       <div class="ad-slot ad-slot--side">
@@ -1186,7 +1263,10 @@
   }
 
   function escapeHtml(s){
-    return s.replace(/[&<>"']/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+    // حماية: لو القيمة undefined أو null (ملاحظة قديمة ناقصة حقل، أو خطأ برمجي في مكان تاني)
+    // كنا هنا نكسر الصفحة كاملة بـ "Cannot read properties of undefined (reading 'replace')".
+    // تحويلها لنص فاضي بدل ما تكسر الموقع.
+    return String(s == null ? "" : s).replace(/[&<>"']/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
   }
 
   function renderPage(){
