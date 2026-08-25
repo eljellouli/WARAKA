@@ -278,12 +278,6 @@
     min-height: 60vh;
     position:relative;
   }
-  .page::before{
-    content:""; position:absolute; top:0; right:56px; width:1.5px; bottom:0;
-    background: linear-gradient(180deg, transparent, var(--amber) 15%, var(--stamp-red) 50%, var(--plum) 85%, transparent);
-    opacity:.4;
-    pointer-events:none;
-  }
   .page::after{
     content:""; position:absolute; top:0; right:0; left:0; height:3px; border-radius: 6px 6px 0 0;
     background: linear-gradient(90deg, var(--amber), var(--stamp-red), var(--plum));
@@ -432,7 +426,6 @@
 
     main.page-wrap{ padding: 16px 12px 0; }
     .page{ padding: 20px 16px 28px; border-radius:4px; }
-    .page::before{ display:none; }
     .note-title{ font-size:22px; }
     .toolbar{ flex-wrap:wrap; gap:2px; row-gap:6px; }
     .editor{ min-height: 240px; font-size:15.5px; }
@@ -780,6 +773,38 @@
     </div>
   </div>
 
+  <div class="modal-overlay" id="privacyOverlay">
+    <div class="tmpl-card" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" style="max-width:560px; text-align:right;">
+      <button class="auth-close" id="privacyClose" aria-label="إغلاق">✕</button>
+      <div class="auth-title" id="privacyTitle">سياسة الخصوصية</div>
+      <p class="auth-sub">آخر تحديث: أغسطس ٢٠٢٦</p>
+      <div style="font-size:13.5px; line-height:1.9; color:var(--ink-soft); max-height:50vh; overflow-y:auto; padding-inline-end:6px;">
+        <p><b style="color:var(--ink)">ما الذي نجمعه:</b> عند الكتابة بلا حساب، تُخزَّن ملاحظاتك محليًا داخل متصفحك فقط (localStorage) ولا تُرسَل إلى أي خادم. عند إنشاء حساب، نخزّن الاسم والبريد الإلكتروني وملاحظاتك لتتمكن من الوصول إليها من أي جهاز.</p>
+        <p><b style="color:var(--ink)">كيف نستخدم بياناتك:</b> فقط لتشغيل الخدمة (حفظ ملاحظاتك ومزامنتها وتسجيل الدخول). لا نبيع بياناتك ولا نشاركها مع أطراف ثالثة لأغراض تسويقية.</p>
+        <p><b style="color:var(--ink)">الإعلانات:</b> يعرض الموقع إعلانات من شركاء خارجيين (مثل Google AdSense وMedia.net وAdsterra) قد تستخدم ملفات تعريف ارتباط (Cookies) لعرض إعلانات ذات صلة. يمكنك التحكم في هذه الإعدادات من متصفحك.</p>
+        <p><b style="color:var(--ink)">ملاحظاتك الخاصة والمحمية بكلمة مرور:</b> لا يمكن لأي شخص الوصول إليها إلا برابطها المباشر أو بكلمة المرور التي حددتها أنت.</p>
+        <p><b style="color:var(--ink)">حذف بياناتك:</b> يمكنك حذف ملاحظاتك في أي وقت من داخل التطبيق، أو حذف حسابك بالكامل عبر التواصل معنا.</p>
+        <p>لأي استفسار حول الخصوصية، راسلنا على <span style="direction:ltr; display:inline-block; font-family:var(--font-mono);">privacy@waraka.app</span>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="abuseOverlay">
+    <div class="tmpl-card" role="dialog" aria-modal="true" aria-labelledby="abuseTitle" style="max-width:480px; text-align:right;">
+      <button class="auth-close" id="abuseClose" aria-label="إغلاق">✕</button>
+      <div class="auth-title" id="abuseTitle">الإبلاغ عن إساءة</div>
+      <p class="auth-sub">لاحظت ملاحظة عامة تحتوي محتوى مسيئًا أو مخالفًا؟ ساعدنا في الحفاظ على «ورقة» مكانًا آمنًا.</p>
+      <div style="font-size:13.5px; line-height:1.9; color:var(--ink-soft);">
+        <p>راسلنا على البريد التالي مع رابط الملاحظة المخالفة ووصف مختصر للمشكلة، وسنراجع البلاغ ونتخذ الإجراء المناسب في أقرب وقت:</p>
+        <p style="text-align:center; margin:16px 0;">
+          <a href="mailto:abuse@waraka.app" style="direction:ltr; display:inline-block; font-family:var(--font-mono); font-size:15px; color:var(--stamp-red); font-weight:700;">abuse@waraka.app</a>
+        </p>
+        <p>يشمل المحتوى المخالف: خطاب الكراهية، التحرش، المحتوى الجنسي غير القانوني، انتهاك حقوق النشر، أو أي نشاط غير قانوني.</p>
+      </div>
+    </div>
+  </div>
+
+
   <div class="layout">
     <aside class="sidebar" role="complementary" aria-label="الملاحظات والمجلدات">
       <div class="sidebar-search">
@@ -969,7 +994,7 @@
       <h4>ورقة</h4>
       <a href="#" class="js-soon">حول</a>
       <a href="#features">الميزات</a>
-      <a href="#" class="js-soon">قوالب جاهزة</a>
+      <a href="#" id="footerTemplates">قوالب جاهزة</a>
     </div>
     <div class="footer-col">
       <h4>الحساب</h4>
@@ -983,14 +1008,13 @@
     </div>
     <div class="footer-col">
       <h4>قانوني</h4>
-      <a href="#" class="js-soon">الخصوصية</a>
+      <a href="#" id="footerPrivacy">الخصوصية</a>
       <a href="#" class="js-soon">شروط الخدمة</a>
-      <a href="#" class="js-soon">الإبلاغ عن إساءة</a>
+      <a href="#" id="footerAbuse">الإبلاغ عن إساءة</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© ٢٠٢٦ ورقة. جميع الحقوق محفوظة.</span>
-    <span>هذه الصفحة نموذج أولي (Prototype) للتصميم فقط.</span>
   </div>
 </footer>
 
@@ -1714,6 +1738,16 @@
   document.getElementById("footerLogin").addEventListener("click", (e)=>{ e.preventDefault(); openAuth(); switchAuthTab("login"); });
   document.getElementById("footerSignup").addEventListener("click", (e)=>{ e.preventDefault(); openAuth(); switchAuthTab("signup"); });
 
+  document.getElementById("footerTemplates").addEventListener("click", (e)=>{ e.preventDefault(); openTemplates(); });
+
+  document.getElementById("footerPrivacy").addEventListener("click", (e)=>{ e.preventDefault(); document.getElementById("privacyOverlay").classList.add("show"); });
+  document.getElementById("privacyClose").addEventListener("click", ()=> document.getElementById("privacyOverlay").classList.remove("show"));
+  document.getElementById("privacyOverlay").addEventListener("click", (e)=>{ if(e.target.id === "privacyOverlay") document.getElementById("privacyOverlay").classList.remove("show"); });
+
+  document.getElementById("footerAbuse").addEventListener("click", (e)=>{ e.preventDefault(); document.getElementById("abuseOverlay").classList.add("show"); });
+  document.getElementById("abuseClose").addEventListener("click", ()=> document.getElementById("abuseOverlay").classList.remove("show"));
+  document.getElementById("abuseOverlay").addEventListener("click", (e)=>{ if(e.target.id === "abuseOverlay") document.getElementById("abuseOverlay").classList.remove("show"); });
+
   // ---------- search ----------
   document.getElementById("searchInput").addEventListener("input", (e)=>{
     searchQuery = e.target.value.trim();
@@ -1784,7 +1818,7 @@
 
   // ---------- global keyboard shortcuts ----------
   document.addEventListener("keydown", (e)=>{
-    const anyModalOpen = ["authOverlay","templatesOverlay","confirmOverlay","shortcutsOverlay"]
+    const anyModalOpen = ["authOverlay","templatesOverlay","confirmOverlay","shortcutsOverlay","privacyOverlay","abuseOverlay"]
       .some(id=> document.getElementById(id).classList.contains("show"));
 
     if(e.key === "Escape"){
@@ -1792,6 +1826,8 @@
       if(document.getElementById("templatesOverlay").classList.contains("show")) closeTemplates();
       if(document.getElementById("confirmOverlay").classList.contains("show")) closeConfirm();
       if(document.getElementById("shortcutsOverlay").classList.contains("show")) closeShortcuts();
+      if(document.getElementById("privacyOverlay").classList.contains("show")) document.getElementById("privacyOverlay").classList.remove("show");
+      if(document.getElementById("abuseOverlay").classList.contains("show")) document.getElementById("abuseOverlay").classList.remove("show");
       return;
     }
 
