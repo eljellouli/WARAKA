@@ -89,8 +89,8 @@
       radial-gradient(circle at 0% 100%, rgba(110,59,92,.06), transparent 40%);
     color: var(--ink);
     font-family: var(--font-body);
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden; /* شبكة أمان — يمنع أي عنصر ثابت العرض (زي إعلانات 728/970px) من تسبيب سكرول أفقي على الهاتف */
   }
@@ -102,7 +102,7 @@
   :focus-visible{ outline: 2px solid var(--plum); outline-offset: 2px; }
 
   /* ---------- App shell ---------- */
-  #app{ display:flex; flex-direction:column; min-height:100vh; }
+  #app{ display:flex; flex-direction:column; height:100vh; height:100dvh; }
 
   header{
     display:flex; align-items:center; justify-content:space-between;
@@ -233,7 +233,7 @@
   .sidebar{
     width: 268px; flex-shrink:0; border-left: 1px solid var(--paper-line);
     background: rgba(255,253,246,.5);
-    display:flex; flex-direction:column;
+    display:flex; flex-direction:column; min-height:0;
   }
   .sidebar-head{
     padding: 16px 18px 10px; display:flex; align-items:center; justify-content:space-between;
@@ -268,7 +268,7 @@
   .empty-sidebar{ padding: 30px 20px; text-align:center; color:var(--ink-soft); font-size:13px; }
 
   /* ---------- Page / editor ---------- */
-  main.page-wrap{ flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; padding: 28px 24px 0; overflow-y:auto; }
+  main.page-wrap{ flex:1; min-width:0; min-height:0; display:flex; flex-direction:column; align-items:center; padding: 28px 24px 0; overflow-y:auto; }
 
   .page{
     width:100%; max-width: 760px; background: var(--paper-white);
@@ -407,7 +407,14 @@
     .layout{ flex-direction:column; }
     .sidebar{ width:100%; border-left:none; border-bottom:1px solid var(--paper-line); }
     .sidebar-search{ padding: 10px 10px 4px; }
-    .folder-list{ padding: 8px 10px 4px; }
+    .folder-list{
+      padding: 8px 10px 4px;
+      /* بدل ما تلف المجلدات لعدة أسطر وتاخد مساحة رأسية كبيرة وتضغط على الملاحظات تحتها،
+         نخليها شريط أفقي قابل للتمرير مثل شريط الملاحظات بالظبط */
+      flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    .folder-list .folder-chip{ flex-shrink:0; }
     .sidebar-head{ padding: 10px 12px 6px; }
     .note-list{
       flex-direction:row; overflow-x:auto; overflow-y:hidden;
@@ -420,9 +427,9 @@
 
     /* الإعلانات الجانبية (300×250 مكدّسة) تاخد مساحة كبيرة جدًا فوق الهاتف — نرتبها أفقيًا جنب بعض بدل الرأسي */
     .ad-slot--side{ display:inline-flex; width:47%; margin: 8px 1.5% 10px; min-height:120px; vertical-align:top; }
-    .sidebar{ display:flex; flex-wrap:wrap; }
-    .sidebar-search, .folder-list, .sidebar-head{ flex:1 1 100%; }
-    .note-list{ flex:1 1 100%; }
+    /* ملاحظة: القاعدة القديمة هنا كانت بتعمل .sidebar{display:flex;flex-wrap:wrap} من غير flex-direction،
+       فكانت بترجّع الترتيب لصفوف أفقية (كل قسم عمود جنب التاني بيتمدد لكل الارتفاع) بدل رصهم عمودي فوق بعض —
+       وده سبب تداخل صندوق المجلدات الأسود الكبير مع الملاحظات. .sidebar أصلًا column من القاعدة العامة، فمفيش داعي نكررها هنا. */
 
     main.page-wrap{ padding: 16px 12px 0; }
     .page{ padding: 20px 16px 28px; border-radius:4px; }
@@ -1304,7 +1311,7 @@
           <p>ابدأ كتابة أول ملاحظة لك — تُسجَّل تلقائيًا في هذا المتصفح، دون الحاجة إلى تسجيل الدخول.</p>
           <button class="btn btn-primary" id="btnEmptyNew">+ ملاحظة جديدة</button>
         </div>`;
-      document.getElementById("btnEmptyNew").addEventListener("click", newNote);
+      document.getElementById("btnEmptyNew").addEventListener("click", ()=> newNote());
       return;
     }
 
