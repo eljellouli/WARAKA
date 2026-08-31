@@ -597,7 +597,14 @@
     display:block; font-size:10px; font-weight:600; letter-spacing:.06em;
     color: var(--ink-faint); text-transform:uppercase; margin-bottom:6px; text-align:center;
   }
-  .ad-slot{ border-style:solid; background: transparent; overflow:hidden; }
+  .ad-slot{
+    border-style:solid; background: transparent; overflow:hidden;
+    /* مهم جدًا: كثير من شبكات الإعلانات تحقن عناصرها بـ position:absolute/fixed.
+       من غير position:relative هنا، العنصر ده كان بيتموضع بالنسبة لأقرب حاوية "متموضعة" في الصفحة
+       (أو الشاشة كلها لو مفيش)، فيطلع عائم فوق باقي الموقع بدل ما يفضل جوه صندوقه. */
+    position: relative; isolation: isolate; max-width: 100%;
+  }
+  .ad-slot > *{ max-width: 100% !important; }
   .ad-slot--side{ margin: 4px 14px 14px; min-height: 250px; flex-direction:column; }
   .ad-slot--banner{
     width:100%; max-width: 760px; margin: 0 auto 8px; min-height: 90px;
@@ -848,12 +855,13 @@
         </script>
       </div>
 
-      <div class="ad-slot ad-slot--side">
-        <span class="ad-unit-label">إعلان</span>
-        <!-- 2) Adsterra — Native Banner (تكيّفي الحجم) -->
-        <script async data-cfasync="false" src="https://pl30977857.profitableratecpmnetwork.com/fa13a3f890b6ce4ce9b4163b6b84289d/invoke.js"></script>
-        <div id="container-fa13a3f890b6ce4ce9b4163b6b84289d"></div>
-      </div>
+      <!-- ==== Zone A2: إعلان Adsterra الشبكي (profitableratecpmnetwork.com) — تم إيقافه عمدًا ====
+           هذا الإعلان بالذات بيحقن محتواه (صور/روابط) في مكان تاني من الصفحة بغض النظر عن هذا الصندوق،
+           وبيطلع عايم فوق باقي محتوى الموقع (اللي شفته في الصور). مفيش CSS يقدر يمنع سلوك زي ده لأنه
+           سكريبت خارجي بيتحكم في نفسه بمعزل عن باقي الصفحة.
+           الحل: لو عايز تفعّله تاني، ادخل على لوحة تحكم Adsterra وتأكد إن نوع الوحدة الإعلانية دي فعلاً
+           "Native Banner" عادي (مش "Social Bar" أو أي تنسيق "عائم/طافي")، لأن الأنواع دي مصممة عمدًا
+           تطفو فوق محتوى الموقع ومش مناسبة لصندوق ثابت زي ده. -->
     </aside>
 
     <main class="page-wrap" id="pageWrap" aria-label="محرر الملاحظة" tabindex="-1"></main>
@@ -968,22 +976,6 @@
 <div class="ad-slot ad-slot--leaderboard">
   <span class="ad-unit-label">إعلان</span>
   <div id="MEDIANET_AD_UNIT_ID_970x90"></div>
-</div>
-
-<!-- ==== Zone D: مربع 300x250 إضافي داخل المحتوى — Adsterra ====
-     هذا هو نفس كود Adsterra اللي كان محطوط غلط في مكان الـ970x90، رجّعناه لحجمه الصحيح -->
-<div class="ad-slot ad-slot--inline">
-  <span class="ad-unit-label">إعلان</span>
-  <script>
-  atOptions = {
-    'key' : 'c2ce2499598541ed2930966975a0f764',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-  </script>
-  <script src="https://www.highrevenueformat.com/c2ce2499598541ed2930966975a0f764/invoke.js"></script>
 </div>
 
 <div class="cta-band">
