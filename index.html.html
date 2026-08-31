@@ -408,13 +408,14 @@
     .sidebar{ width:100%; border-left:none; border-bottom:1px solid var(--paper-line); }
     .sidebar-search{ padding: 10px 10px 4px; }
     .folder-list{
-      padding: 8px 10px 4px;
-      /* بدل ما تلف المجلدات لعدة أسطر وتاخد مساحة رأسية كبيرة وتضغط على الملاحظات تحتها،
-         نخليها شريط أفقي قابل للتمرير مثل شريط الملاحظات بالظبط */
-      flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
+      padding: 10px 12px 6px;
+      /* شبكة منظمة 3 مجلدات في الصف بدل ما تلف بشكل عشوائي أو تاخد شريط تمرير طويل — أنضف وأجمل بصريًا */
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:6px;
     }
-    .folder-list .folder-chip{ flex-shrink:0; }
+    .folder-list .folder-chip{
+      width:100%; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      padding: 6px 4px;
+    }
     .sidebar-head{ padding: 10px 12px 6px; }
     .note-list{
       flex-direction:row; overflow-x:auto; overflow-y:hidden;
