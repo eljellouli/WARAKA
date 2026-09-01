@@ -10,13 +10,7 @@
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="دفتر ملاحظات, مفكرة إلكترونية, ملاحظات اونلاين, كتابة ملاحظة بدون تسجيل, مشاركة ملاحظة, محرر نصوص عربي, تصدير PDF, تصدير Word">
 <link rel="canonical" href="https://sattr.vercel.app/">
-<meta name="theme-color" content="#F3ECDD">
-
-<!-- ============================================================
-     Google AdSense — auto ads / library loader
-     استبدل ca-pub-XXXXXXXXXXXXXXXX برقم الناشر (Publisher ID) الحقيقي بتاعك
-     ============================================================ -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+<meta name="theme-color" content="#EAE0C8">
 
 <!-- ============================================================
      Media.net — مكتبة السياق (Contextual library)
@@ -39,7 +33,7 @@
 <meta name="twitter:description" content="اكتب ملاحظة فورًا بلا تسجيل، شاركها برابط خاص، ونظّمها في مجلدات.">
 <meta name="twitter:image" content="https://sattr.vercel.app/og-image.png">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23F3ECDD'/%3E%3Ccircle cx='44' cy='20' r='11' fill='none' stroke='%23A63A34' stroke-width='3'/%3E%3Ctext x='26' y='46' font-family='Georgia,serif' font-weight='bold' font-size='28' fill='%231F2C38' text-anchor='middle'%3Eو%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23EAE0C8'/%3E%3Ccircle cx='44' cy='20' r='11' fill='none' stroke='%238B3A2B' stroke-width='3'/%3E%3Ctext x='26' y='46' font-family='Georgia,serif' font-weight='bold' font-size='28' fill='%233A2C1E' text-anchor='middle'%3Eو%3C/text%3E%3C/svg%3E">
 
 <script type="application/ld+json">
 {
@@ -58,25 +52,26 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Almarai:wght@300;400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper: #F3ECDD;
-    --paper-white: #FFFDF6;
-    --paper-line: #DACCA3;
-    --paper-line-soft: #E7DCC1;
-    --ink: #1F2C38;
-    --ink-soft: #56646F;
-    --ink-faint: #8B93994d;
-    --amber: #E0A526;
-    --amber-deep: #B9821A;
-    --plum: #6E3B5C;
-    --stamp-red: #A63A34;
-    --stamp-red-deep: #832C27;
-    --shadow: 0 18px 40px -20px rgba(31,44,56,.35);
-    --font-display: 'Amiri', serif;
-    --font-body: 'Tajawal', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
+    /* ==== هوية بصرية جديدة: "ورق كرافت" — حبر بني دافئ بدل الأزرق، تراكوتا بدل الكهرماني ==== */
+    --paper: #EAE0C8;
+    --paper-white: #FBF5E6;
+    --paper-line: #CDBA93;
+    --paper-line-soft: #E2D5B3;
+    --ink: #3A2C1E;
+    --ink-soft: #6B5A44;
+    --ink-faint: #9C8B6F4d;
+    --amber: #C1592E;
+    --amber-deep: #9B4423;
+    --plum: #4B5D3A;
+    --stamp-red: #8B3A2B;
+    --stamp-red-deep: #6E2C20;
+    --shadow: 0 18px 40px -20px rgba(58,44,30,.4);
+    --font-display: 'Aref Ruqaa', serif;
+    --font-body: 'Almarai', sans-serif;
+    --font-mono: 'Space Mono', monospace;
   }
 
   *{box-sizing:border-box;}
@@ -85,8 +80,8 @@
   body{
     background: var(--paper);
     background-image:
-      radial-gradient(circle at 100% 0%, rgba(224,165,38,.08), transparent 45%),
-      radial-gradient(circle at 0% 100%, rgba(110,59,92,.06), transparent 40%);
+      radial-gradient(circle at 100% 0%, rgba(193,89,46,.10), transparent 45%),
+      radial-gradient(circle at 0% 100%, rgba(75,93,58,.08), transparent 40%);
     color: var(--ink);
     font-family: var(--font-body);
     height: 100vh;
@@ -115,8 +110,8 @@
   }
   .brand{ display:flex; align-items:baseline; gap:10px; }
   .brand-mark{
-    font-family: var(--font-display); font-style: italic; font-weight:700;
-    font-size: 28px; color: var(--ink);
+    font-family: var(--font-display); font-weight:700;
+    font-size: 30px; color: var(--ink);
     position: relative;
   }
   .brand-mark::after{
@@ -130,17 +125,17 @@
 
   /* Dark mode */
   body[data-theme="dark"]{
-    --paper: #16202A;
-    --paper-white: #1D2933;
-    --paper-line: #34424D;
-    --paper-line-soft: #2A3740;
-    --ink: #EDE6D6;
-    --ink-soft: #9CA9B2;
-    --amber: #E8B84B;
-    --amber-deep: #C99A2E;
-    --plum: #9B6389;
-    --stamp-red: #D4726B;
-    --stamp-red-deep: #B85950;
+    --paper: #221A12;
+    --paper-white: #2C2118;
+    --paper-line: #4A3A28;
+    --paper-line-soft: #382C1F;
+    --ink: #EDE0C8;
+    --ink-soft: #B8A583;
+    --amber: #D97A4A;
+    --amber-deep: #B75E33;
+    --plum: #7A9166;
+    --stamp-red: #C1592E;
+    --stamp-red-deep: #9B4423;
   }
   body[data-theme="dark"] header{
     background: linear-gradient(180deg, rgba(29,41,51,.82), rgba(29,41,51,.6));
@@ -191,7 +186,7 @@
 
   .btn{
     border:1px solid var(--paper-line); background: var(--paper-white);
-    color: var(--ink); border-radius: 8px; padding: 9px 16px;
+    color: var(--ink); border-radius: 999px; padding: 9px 18px;
     font-size: 14px; font-weight:500; display:inline-flex; align-items:center; gap:8px;
     transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
   }
@@ -200,7 +195,7 @@
   .btn-primary{
     background: var(--ink); color: var(--paper-white); border-color: var(--ink);
   }
-  .btn-primary:hover{ background:#14202a; }
+  .btn-primary:hover{ background:#241A10; }
   .btn-ghost{ background: transparent; border-color: transparent; }
   .btn-ghost:hover{ background: var(--paper-line-soft); box-shadow:none; transform:none; }
   .btn-danger{ background: var(--stamp-red); color:#fff; border-color: var(--stamp-red); }
@@ -333,19 +328,20 @@
   /* Wax stamp privacy toggle — signature element */
   .stamp{
     position:relative; width:64px; height:64px; border-radius:50%;
-    border: 2.5px solid var(--stamp-red); color: var(--stamp-red);
+    border: 2.5px solid var(--stamp-red); color: var(--paper-white);
     display:flex; align-items:center; justify-content:center; text-align:center;
-    background: transparent; transform: rotate(-8deg);
-    transition: transform .18s ease, border-color .18s ease, color .18s ease;
+    background: var(--stamp-red); transform: rotate(-8deg);
+    box-shadow: 0 6px 14px -6px rgba(139,58,43,.6), inset 0 -3px 6px rgba(0,0,0,.18), inset 0 2px 3px rgba(255,255,255,.15);
+    transition: transform .18s ease, border-color .18s ease, color .18s ease, background .18s ease;
     flex-shrink:0;
   }
   .stamp::before{
-    content:""; position:absolute; inset:6px; border-radius:50%; border: 1px dashed currentColor; opacity:.55;
+    content:""; position:absolute; inset:6px; border-radius:50%; border: 1px dashed rgba(255,255,255,.55); opacity:.8;
   }
   .stamp span{ font-family: var(--font-mono); font-size:9.5px; font-weight:600; line-height:1.25; letter-spacing:.02em; }
   .stamp:hover{ transform: rotate(-8deg) scale(1.05); }
-  .stamp.private{ border-color: var(--plum); color: var(--plum); }
-  .stamp.password{ border-color: var(--ink); color: var(--ink); }
+  .stamp.private{ border-color: var(--plum); background: var(--plum); }
+  .stamp.password{ border-color: var(--ink); background: var(--ink); }
 
   .privacy-block{ display:flex; align-items:center; gap:10px; }
   .privacy-info{ font-size:12px; color: var(--ink-soft); max-width:150px; line-height:1.5; }
@@ -446,7 +442,7 @@
     /* البانرات العريضة (970×90 / 728×90) إعلانات بحجم ثابت لا تتجاوب مع الشاشة —
        ضغطها بـ CSS يقصّها أو يشوّهها بدل ما يصغّرها، وده يخالف شروط أغلب الشبكات الإعلانية.
        الحل الصحيح: نخفيها على الهاتف ونعرض بدلها صندوق 300×250 المتجاوب فقط. */
-    .ad-slot--leaderboard, .ad-slot--banner{ display:none; }
+    .ad-slot--leaderboard{ display:none; }
 
     .m-section{ padding: 48px 18px; }
     .feature-grid{ grid-template-columns:1fr; }
@@ -559,7 +555,7 @@
     margin-top:4px; background: var(--ink); color: var(--paper-white); border:none; border-radius:8px;
     padding: 11px; font-size:14px; font-weight:600;
   }
-  .auth-submit:hover{ background:#14202a; }
+  .auth-submit:hover{ background:#241A10; }
 
   .auth-foot{ margin-top:16px; font-size:12px; color: var(--ink-soft); text-align:center; line-height:1.6; }
 
@@ -606,9 +602,6 @@
   }
   .ad-slot > *{ max-width: 100% !important; }
   .ad-slot--side{ margin: 4px 14px 14px; min-height: 250px; flex-direction:column; }
-  .ad-slot--banner{
-    width:100%; max-width: 760px; margin: 0 auto 8px; min-height: 90px;
-  }
   .ad-slot--leaderboard{ max-width: 1040px; margin: 0 auto; padding: 0 28px 20px; }
   .ad-slot--leaderboard .ad-slot{ min-height: 90px; }
   .ad-slot--inline{
@@ -633,7 +626,7 @@
   }
   .diff-label{ font-weight:700; font-size:13.5px; color: var(--ink); padding-top:2px; }
   .diff-us{ font-size:13.5px; line-height:1.7; color: var(--ink); background: var(--paper); border-radius:8px; padding:10px 14px; }
-  .diff-us .chk{ color:#4C7A6F; font-weight:700; margin-left:4px; }
+  .diff-us .chk{ color:#4B5D3A; font-weight:700; margin-left:4px; }
   .diff-them{ font-size:13px; line-height:1.7; color: var(--ink-soft); padding:10px 14px; }
 
   @media (max-width: 760px){
@@ -658,9 +651,9 @@
     background: var(--ink); color: var(--paper-white); text-align:center; padding: 60px 28px;
   }
   .cta-band h2{ font-family: var(--font-display); font-size: clamp(24px,3vw,32px); margin: 0 0 10px; }
-  .cta-band p{ color: #C7D0D8; font-size:14px; margin: 0 0 26px; }
+  .cta-band p{ color: #D9C8A8; font-size:14px; margin: 0 0 26px; }
   .cta-band .btn-primary{ background: var(--amber); border-color: var(--amber); color: var(--ink); padding:12px 26px; }
-  .cta-band .btn-primary:hover{ background:#EBB53C; }
+  .cta-band .btn-primary:hover{ background:#D9723F; }
 
   footer.site-footer{ background: var(--paper-white); border-top:1px solid var(--paper-line); }
   .footer-grid{
@@ -834,25 +827,19 @@
       </div>
       <div class="note-list" id="noteList"></div>
 
-      <!-- ==== Zone A: مربع الشريط الجانبي — إعلانان مكدّسان (وليس متراكبين) ==== -->
+      <!-- ==== Zone A: مربع الشريط الجانبي — Adsterra (نفس الإعلان القديم الشغال) ==== -->
       <div class="ad-slot ad-slot--side">
         <span class="ad-unit-label">إعلان</span>
-        <!-- 1) Google AdSense — تنسيق متجاوب (يتمدد مع عرض الصندوق تلقائيًا، بما في ذلك على الهاتف) -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="YYYYYYYYYY"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
         <script>
-          // تشغيل الإعلان فقط لو استُبدل الـ Publisher ID الحقيقي — لو لسه placeholder،
-          // منسيبوش الكود يحاول يتنفذ بقيمة غير صالحة (ده كان بيسبب خطأ JS يوقف الصفحة).
-          try{
-            if(!document.querySelector('ins[data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"]')){
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            }
-          }catch(e){ /* لا نكسر باقي الصفحة لو فشل تحميل الإعلان */ }
+          atOptions = {
+            'key' : 'c2ce2499598541ed2930966975a0f764',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
         </script>
+        <script src="https://www.highrevenueformat.com/c2ce2499598541ed2930966975a0f764/invoke.js"></script>
       </div>
 
       <!-- ==== Zone A2: إعلان Adsterra الشبكي (profitableratecpmnetwork.com) — تم إيقافه عمدًا ====
@@ -1038,7 +1025,7 @@
     password:{ short: "بكلمة مرور",   sub: "يجب إدخال كلمة المرور لقراءة هذه الملاحظة." }
   };
   const PRIVACY_ORDER = ["public","private","password"];
-  const TAB_COLORS = ["#E0A526","#6E3B5C","#A63A34","#4C7A6F","#5A6E8C"];
+  const TAB_COLORS = ["#C1592E","#4B5D3A","#8B3A2B","#9B7B3F","#6B5A44"];
 
   const TEMPLATES = [
     { id:"meeting", icon:"🗓️", name:"محضر اجتماع", desc:"جدول أعمال ونقاط ومتابعات",
@@ -1364,45 +1351,9 @@
         </div>
         <button class="btn btn-ghost btn-sm" id="btnDeleteNote" aria-label="حذف هذه الملاحظة">حذف الملاحظة</button>
       </div>
-
-      <div class="ad-slot ad-slot--banner" id="adBannerSlot">
-        <span class="ad-unit-label">إعلان</span>
-      </div>
     `;
-
-    // ملاحظة مهمة: أي <script> يوضع داخل innerHTML لا ينفّذه المتصفح إطلاقًا.
-    // لهذا كانت إعلانات هذا الصندوق (728×90) لا تظهر أبدًا رغم وجود الكود.
-    // الحل: نبني عناصر <script> حقيقية عبر JS وندرجها يدويًا، في كل مرة تُفتح فيها ملاحظة.
-    loadBannerAd();
 
     wireEditor(n);
-  }
-
-  // يحقن إعلان Adsterra (728x90) داخل صندوق البانر بطريقة تُنفَّذ فعليًا من المتصفح.
-  function loadBannerAd(){
-    const slot = document.getElementById("adBannerSlot");
-    if(!slot) return;
-
-    // نمسح أي محاولة سابقة (لو المستخدم بدّل بين الملاحظات بسرعة) لتفادي تكرار الإعلان
-    slot.querySelectorAll(".ad-injected").forEach(el=> el.remove());
-
-    const cfgScript = document.createElement("script");
-    cfgScript.className = "ad-injected";
-    cfgScript.text = `
-      atOptions = {
-        'key' : 'f341c634f40a2a630c21442bc24e9830',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    `;
-    slot.appendChild(cfgScript);
-
-    const invokeScript = document.createElement("script");
-    invokeScript.className = "ad-injected";
-    invokeScript.src = "https://www.highrevenueformat.com/f341c634f40a2a630c21442bc24e9830/invoke.js";
-    slot.appendChild(invokeScript);
   }
 
   function wireEditor(n){
