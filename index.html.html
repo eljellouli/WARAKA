@@ -167,8 +167,8 @@
   /* Templates gallery */
   .tmpl-card{
     width:100%; max-width: 560px; background: var(--paper-white);
-    border:1px solid var(--paper-line); border-radius: 4px 4px 2px 2px;
-    box-shadow: 0 30px 60px -20px rgba(31,44,56,.5);
+    border:1px solid var(--paper-line); border-radius: 20px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.16);
     padding: 30px 32px 34px; position:relative;
   }
   .tmpl-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:8px; }
@@ -199,14 +199,14 @@
 
   .confirm-card{
     width:100%; max-width: 360px; background: var(--paper-white); border:1px solid var(--paper-line);
-    border-radius: 4px 4px 2px 2px; box-shadow: 0 30px 60px -20px rgba(31,44,56,.5);
+    border-radius: 20px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.16);
     padding: 26px 28px 28px; animation: cardIn .18s ease;
   }
   .confirm-actions{ display:flex; gap:10px; margin-top:18px; justify-content:flex-end; }
 
   .shortcuts-card{
     width:100%; max-width: 420px; background: var(--paper-white); border:1px solid var(--paper-line);
-    border-radius: 4px 4px 2px 2px; box-shadow: 0 30px 60px -20px rgba(31,44,56,.5);
+    border-radius: 20px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.16);
     padding: 28px 30px 30px; position:relative; animation: cardIn .18s ease;
   }
   .shortcuts-list{ display:flex; flex-direction:column; gap:12px; margin-top:16px; }
@@ -493,23 +493,19 @@
   .user-chip button:hover{ color: var(--stamp-red); }
 
   .modal-overlay{
-    position:fixed; inset:0; background: rgba(31,44,56,.45); backdrop-filter: blur(2px);
+    position:fixed; inset:0; background: rgba(0,0,0,.35); backdrop-filter: blur(2px);
     display:none; align-items:center; justify-content:center; z-index:100; padding:20px;
   }
   .modal-overlay.show{ display:flex; }
 
   .auth-card{
     width:100%; max-width: 380px; background: var(--paper-white);
-    border:1px solid var(--paper-line); border-radius: 4px 4px 2px 2px;
-    box-shadow: 0 30px 60px -20px rgba(31,44,56,.5);
+    border:1px solid var(--paper-line); border-radius: 20px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.16);
     padding: 30px 32px 34px; position:relative;
     animation: cardIn .22s ease;
   }
   @keyframes cardIn{ from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform: translateY(0); } }
-  .auth-card::before{
-    content:""; position:absolute; top:0; right:44px; left:44px; height:1px;
-    background: linear-gradient(90deg, transparent, var(--paper-line), transparent);
-  }
   .auth-close{
     position:absolute; top:14px; left:14px; border:none; background:none; color: var(--ink-soft);
     font-size:16px; width:28px; height:28px; border-radius:50%;
@@ -550,8 +546,8 @@
   .marketing{ background: var(--paper-white); border-top: 1px solid var(--paper-line); }
   .m-section{ max-width: 1040px; margin: 0 auto; padding: 72px 28px; }
   .m-eyebrow{
-    font-family: var(--font-mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
-    color: var(--stamp-red); margin: 0 0 10px; font-weight:600;
+    font-family: var(--font-mono); font-size:18px; letter-spacing:.08em; text-transform:uppercase;
+    color: var(--stamp-red); margin: 0 0 12px; font-weight:700;
   }
   .m-heading{ font-family: var(--font-display); font-size: clamp(26px,3.4vw,38px); font-weight:700; margin:0 0 14px; }
   .m-lead{ font-size:15.5px; color: var(--ink-soft); max-width:560px; line-height:1.8; margin:0 0 44px; }
@@ -1313,7 +1309,7 @@
         </div>
         <div class="footer-actions">
           <div class="share-row">
-            <span class="share-link" id="shareLink">anotepad-clone.app/n/${n.id}</span>
+            <span class="share-link" id="shareLink">${location.host}${location.pathname}?n=${n.id}</span>
             <button class="btn btn-ghost btn-sm" id="btnCopy">نسخ الرابط</button>
           </div>
           <button class="btn btn-ghost btn-sm" id="btnTxt">TXT</button>
@@ -1344,6 +1340,19 @@
   }
 
   function wireEditor(n){
+    // نوصّل أزرار النسخ والتصدير أول حاجة، ومحمية في try/catch منفصلة —
+    // عشان لو أي كود تاني في الدالة دي فشل، الأزرار دي تفضل شغالة برضو.
+    try{
+      document.getElementById("btnCopy").addEventListener("click", ()=>{
+        const link = `${location.origin}${location.pathname}?n=${n.id}`;
+        copyToClipboard(link);
+      });
+      document.getElementById("btnTxt").addEventListener("click", ()=> exportTxt(n));
+      document.getElementById("btnDoc").addEventListener("click", ()=> exportDoc(n));
+      document.getElementById("btnPdf").addEventListener("click", ()=> exportPdf(n));
+      document.getElementById("btnDeleteNote").addEventListener("click", ()=> deleteNote(n.id));
+    }catch(e){ console.error("فشل توصيل أزرار النسخ/التصدير:", e); }
+
     const titleInput = document.getElementById("titleInput");
     const editor = document.getElementById("editor");
     const stampBtn = document.getElementById("stampBtn");
@@ -1408,19 +1417,6 @@
       btn.textContent = showing ? "👁" : "🙈";
     });
 
-    document.getElementById("btnDeleteNote").addEventListener("click", ()=>{
-      deleteNote(n.id);
-    });
-
-    document.getElementById("btnCopy").addEventListener("click", ()=>{
-      const link = `https://anotepad-clone.app/n/${n.id}`;
-      copyToClipboard(link);
-    });
-
-    document.getElementById("btnTxt").addEventListener("click", ()=> exportTxt(n));
-    document.getElementById("btnDoc").addEventListener("click", ()=> exportDoc(n));
-    document.getElementById("btnPdf").addEventListener("click", ()=> exportPdf(n));
-
     updateWordcount();
   }
 
@@ -1462,17 +1458,21 @@
 
   // ---------- export ----------
   function exportTxt(n){
-    const text = (n.title || "بدون عنوان") + "\n\n" + stripHtml(n.content);
-    downloadBlob(new Blob([text], {type:"text/plain;charset=utf-8"}), (n.title||"ملاحظة") + ".txt");
-    showToast("تصدير TXT ✓");
+    try{
+      const text = (n.title || "بدون عنوان") + "\n\n" + stripHtml(n.content);
+      downloadBlob(new Blob([text], {type:"text/plain;charset=utf-8"}), (n.title||"ملاحظة") + ".txt");
+      showToast("تصدير TXT ✓");
+    }catch(e){ showToast("تعذر تصدير TXT"); }
   }
 
   function exportDoc(n){
-    const html = `<!DOCTYPE html><html dir="rtl"><head><meta charset="utf-8">
-      <style>body{font-family:Arial;} h1{font-size:20pt;}</style></head>
-      <body><h1>${escapeHtml(n.title||"بدون عنوان")}</h1>${n.content}</body></html>`;
-    downloadBlob(new Blob(["\ufeff", html], {type:"application/msword"}), (n.title||"ملاحظة") + ".doc");
-    showToast("تصدير Word ✓");
+    try{
+      const html = `<!DOCTYPE html><html dir="rtl"><head><meta charset="utf-8">
+        <style>body{font-family:Arial;} h1{font-size:20pt;}</style></head>
+        <body><h1>${escapeHtml(n.title||"بدون عنوان")}</h1>${n.content}</body></html>`;
+      downloadBlob(new Blob(["\ufeff", html], {type:"application/msword"}), (n.title||"ملاحظة") + ".doc");
+      showToast("تصدير Word ✓");
+    }catch(e){ showToast("تعذر تصدير Word"); }
   }
 
   function exportPdf(n){
