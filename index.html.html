@@ -52,26 +52,26 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Almarai:wght@300;400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ==== هوية بصرية جديدة: "ورق كرافت" — حبر بني دافئ بدل الأزرق، تراكوتا بدل الكهرماني ==== */
-    --paper: #EAE0C8;
-    --paper-white: #FBF5E6;
-    --paper-line: #CDBA93;
-    --paper-line-soft: #E2D5B3;
-    --ink: #3A2C1E;
-    --ink-soft: #6B5A44;
-    --ink-faint: #9C8B6F4d;
-    --amber: #C1592E;
-    --amber-deep: #9B4423;
-    --plum: #4B5D3A;
-    --stamp-red: #8B3A2B;
-    --stamp-red-deep: #6E2C20;
-    --shadow: 0 18px 40px -20px rgba(58,44,30,.4);
-    --font-display: 'Aref Ruqaa', serif;
-    --font-body: 'Almarai', sans-serif;
-    --font-mono: 'Space Mono', monospace;
+    /* ==== هوية بصرية جديدة كليًا: تصميم عصري نظيف (Apple-style) — أبيض/رمادي فاتح، حبر شبه أسود، أزرق واحد مميز ==== */
+    --paper: #F5F5F7;
+    --paper-white: #FFFFFF;
+    --paper-line: #E3E3E6;
+    --paper-line-soft: #EFEFF1;
+    --ink: #1D1D1F;
+    --ink-soft: #6E6E73;
+    --ink-faint: #6E6E734d;
+    --amber: #0A84FF;
+    --amber-deep: #0066CC;
+    --plum: #34A853;
+    --stamp-red: #FF3B30;
+    --stamp-red-deep: #D70015;
+    --shadow: 0 12px 32px -16px rgba(0,0,0,.14);
+    --font-display: 'IBM Plex Sans Arabic', sans-serif;
+    --font-body: 'IBM Plex Sans Arabic', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
   }
 
   *{box-sizing:border-box;}
@@ -79,18 +79,16 @@
   html{ -webkit-text-size-adjust:100%; }
   body{
     background: var(--paper);
-    background-image:
-      radial-gradient(circle at 100% 0%, rgba(193,89,46,.10), transparent 45%),
-      radial-gradient(circle at 0% 100%, rgba(75,93,58,.08), transparent 40%);
     color: var(--ink);
     font-family: var(--font-body);
+    font-weight: 400;
     height: 100vh;
     height: 100dvh;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden; /* شبكة أمان — يمنع أي عنصر ثابت العرض (زي إعلانات 728/970px) من تسبيب سكرول أفقي على الهاتف */
   }
 
-  ::selection{ background: var(--amber); color: var(--ink); }
+  ::selection{ background: var(--amber); color: #fff; }
 
   button{ font-family: inherit; cursor:pointer; }
   input, textarea{ font-family: inherit; }
@@ -115,8 +113,8 @@
     position: relative;
   }
   .brand-mark::after{
-    content:""; position:absolute; right:-2px; bottom:2px; left:-2px; height:6px;
-    background: var(--amber); opacity:.55; z-index:-1;
+    content:""; position:absolute; right:0; bottom:0; left:0; height:3px;
+    background: var(--amber); opacity:.7; border-radius:2px;
   }
   .brand-sub{ font-size:12px; color: var(--ink-soft); letter-spacing:.03em; }
 
@@ -140,9 +138,7 @@
   body[data-theme="dark"] header{
     background: linear-gradient(180deg, rgba(29,41,51,.82), rgba(29,41,51,.6));
   }
-  body[data-theme="dark"] .editor{
-    background-image: repeating-linear-gradient(var(--paper-white), var(--paper-white) 37px, var(--paper-line-soft) 38px);
-  }
+  body[data-theme="dark"] .editor{ /* لا خطوط ورقية في التصميم الجديد */ }
   .theme-toggle{
     width:36px; height:36px; border-radius:8px; border:1px solid var(--paper-line); background: var(--paper-white);
     display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; color: var(--ink);
@@ -166,7 +162,7 @@
     background: transparent; color: var(--ink-soft); white-space:nowrap;
   }
   .folder-chip.active{ background: var(--ink); color: var(--paper-white); border-color: var(--ink); }
-  .folder-chip.add{ color: var(--stamp-red); border-style:dashed; }
+  .folder-chip.add{ color: var(--amber); border-style:solid; }
 
   /* Templates gallery */
   .tmpl-card{
@@ -267,49 +263,44 @@
 
   .page{
     width:100%; max-width: 760px; background: var(--paper-white);
-    border:1px solid var(--paper-line); border-radius: 6px 6px 2px 2px;
+    border:1px solid var(--paper-line); border-radius: 20px;
     box-shadow: var(--shadow);
-    padding: 34px 40px 46px;
+    padding: 40px 44px 50px;
     min-height: 60vh;
     position:relative;
-  }
-  .page::after{
-    content:""; position:absolute; top:0; right:0; left:0; height:3px; border-radius: 6px 6px 0 0;
-    background: linear-gradient(90deg, var(--amber), var(--stamp-red), var(--plum));
   }
 
   .note-title{
     display:block; width:100%; border:none; background:transparent; outline:none;
-    font-family: var(--font-display); font-weight:700; font-size: clamp(24px, 3.4vw, 32px);
-    color: var(--ink); margin-bottom: 14px; padding-bottom: 12px;
-    border-bottom: 1px dashed var(--paper-line);
+    font-family: var(--font-display); font-weight:600; font-size: clamp(24px, 3.4vw, 32px);
+    color: var(--ink); margin-bottom: 18px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--paper-line);
+    letter-spacing: -0.01em;
   }
   .note-title::placeholder{ color: #B9AF98; }
 
-  .toolbar{ display:flex; align-items:center; gap:4px; margin-bottom:16px; }
+  .toolbar{ display:flex; align-items:center; gap:2px; margin-bottom:16px; background: var(--paper-line-soft); padding:4px; border-radius:12px; width:fit-content; }
   .tb-btn{
-    width:30px; height:30px; border-radius:6px; border:1px solid transparent; background:transparent;
-    display:flex; align-items:center; justify-content:center; color: var(--ink-soft); font-size:14px; font-weight:700;
+    width:32px; height:32px; border-radius:8px; border:1px solid transparent; background:transparent;
+    display:flex; align-items:center; justify-content:center; color: var(--ink-soft); font-size:14px; font-weight:600;
     padding: 0 4px;
   }
-  .tb-btn[data-cmd="formatBlock"], .tb-btn[data-cmd="removeFormat"]{ width:auto; min-width:30px; font-size:11.5px; }
-  .tb-btn:hover{ background: var(--paper-line-soft); color: var(--ink); }
-  .tb-btn.active{ background: var(--ink); color: var(--paper-white); }
+  .tb-btn[data-cmd="formatBlock"], .tb-btn[data-cmd="removeFormat"]{ width:auto; min-width:32px; font-size:11.5px; }
+  .tb-btn:hover{ background: rgba(0,0,0,.05); color: var(--ink); }
+  .tb-btn.active{ background: var(--paper-white); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
   .tb-sep{ width:1px; height:18px; background: var(--paper-line); margin: 0 6px; }
 
   .editor{
-    min-height: 320px; outline:none; line-height: 2.15;
-    font-size: 16.5px; color: var(--ink);
-    background-image: repeating-linear-gradient(var(--paper-white), var(--paper-white) 37px, var(--paper-line-soft) 38px);
-    background-attachment: local;
+    min-height: 320px; outline:none; line-height: 1.9;
+    font-size: 16.5px; color: var(--ink); font-weight:400;
   }
-  .editor:empty::before{ content: attr(data-placeholder); color:#B9AF98; }
-  .editor b, .editor strong{ color: var(--ink); }
-  .editor h2{ font-family: var(--font-display); font-size:24px; margin: 12px 0 6px; }
-  .editor h3{ font-family: var(--font-display); font-size:19px; margin: 10px 0 6px; }
+  .editor:empty::before{ content: attr(data-placeholder); color:#AEAEB2; }
+  .editor b, .editor strong{ color: var(--ink); font-weight:600; }
+  .editor h2{ font-family: var(--font-display); font-weight:600; font-size:24px; margin: 12px 0 6px; }
+  .editor h3{ font-family: var(--font-display); font-weight:600; font-size:19px; margin: 10px 0 6px; }
   .editor blockquote{
-    margin: 10px 0; padding: 4px 16px; border-right: 3px solid var(--stamp-red);
-    color: var(--ink-soft); font-style:italic;
+    margin: 10px 0; padding: 4px 16px; border-right: 3px solid var(--paper-line);
+    color: var(--ink-soft);
   }
 
   /* ---------- Footer bar ---------- */
@@ -320,28 +311,24 @@
   .status-cluster{ display:flex; align-items:center; gap:14px; font-size:12.5px; color: var(--ink-soft); }
   .save-status{ display:flex; align-items:center; gap:6px; }
   .save-dot{ width:7px; height:7px; border-radius:50%; background: var(--amber); transition: background .2s; }
-  .save-dot.saved{ background:#6C8F5B; }
+  .save-dot.saved{ background:#34C759; }
   .wordcount{ font-family: var(--font-mono); }
 
   .footer-actions{ display:flex; align-items:center; gap:8px; }
 
-  /* Wax stamp privacy toggle — signature element */
+  /* مؤشر الخصوصية — زر مسطّح حديث بدل الختم الدائري القديم */
   .stamp{
-    position:relative; width:64px; height:64px; border-radius:50%;
-    border: 2.5px solid var(--stamp-red); color: var(--paper-white);
+    position:relative; min-width:44px; height:44px; padding:0 12px; border-radius:12px;
+    border: 1px solid var(--paper-line); color: var(--ink-soft);
     display:flex; align-items:center; justify-content:center; text-align:center;
-    background: var(--stamp-red); transform: rotate(-8deg);
-    box-shadow: 0 6px 14px -6px rgba(139,58,43,.6), inset 0 -3px 6px rgba(0,0,0,.18), inset 0 2px 3px rgba(255,255,255,.15);
-    transition: transform .18s ease, border-color .18s ease, color .18s ease, background .18s ease;
+    background: var(--paper-line-soft);
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
     flex-shrink:0;
   }
-  .stamp::before{
-    content:""; position:absolute; inset:6px; border-radius:50%; border: 1px dashed rgba(255,255,255,.55); opacity:.8;
-  }
-  .stamp span{ font-family: var(--font-mono); font-size:9.5px; font-weight:600; line-height:1.25; letter-spacing:.02em; }
-  .stamp:hover{ transform: rotate(-8deg) scale(1.05); }
-  .stamp.private{ border-color: var(--plum); background: var(--plum); }
-  .stamp.password{ border-color: var(--ink); background: var(--ink); }
+  .stamp span{ font-family: var(--font-body); font-size:12px; font-weight:600; line-height:1.25; letter-spacing:0; }
+  .stamp:hover{ background: var(--paper-line); }
+  .stamp.private{ border-color: var(--plum); color: var(--plum); background: color-mix(in srgb, var(--plum) 10%, var(--paper-white)); }
+  .stamp.password{ border-color: var(--ink); color: var(--ink); background: var(--paper-line-soft); }
 
   .privacy-block{ display:flex; align-items:center; gap:10px; }
   .privacy-info{ font-size:12px; color: var(--ink-soft); max-width:150px; line-height:1.5; }
@@ -476,7 +463,7 @@
     .header-nav .btn-sm{ padding:6px 8px; font-size:12px; }
     .ad-slot--side{ width:100%; margin: 6px 0 10px; } /* شاشة ضيقة جدًا — إعلان جانب واحد في كل سطر بدل اتنين */
     .note-title{ font-size:20px; }
-    .stamp{ width:54px; height:54px; }
+    .stamp{ min-width:40px; height:40px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -518,7 +505,7 @@
     padding: 30px 32px 34px; position:relative;
     animation: cardIn .22s ease;
   }
-  @keyframes cardIn{ from{ opacity:0; transform: translateY(10px) rotate(-.6deg); } to{ opacity:1; transform: translateY(0) rotate(0); } }
+  @keyframes cardIn{ from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform: translateY(0); } }
   .auth-card::before{
     content:""; position:absolute; top:0; right:44px; left:44px; height:1px;
     background: linear-gradient(90deg, transparent, var(--paper-line), transparent);
@@ -542,17 +529,17 @@
   .auth-panel{ display:none; flex-direction:column; gap:16px; }
   .auth-panel.active{ display:flex; }
 
-  .field{ display:flex; flex-direction:column; gap:4px; }
+  .field{ display:flex; flex-direction:column; gap:6px; }
   .field label{ font-size:11.5px; color: var(--ink-soft); font-weight:600; }
   .field input{
-    border:none; border-bottom: 1px dashed var(--paper-line); background:transparent;
-    padding: 6px 2px; font-size:15px; color: var(--ink); outline:none;
+    border:1px solid var(--paper-line); border-radius:10px; background: var(--paper-line-soft);
+    padding: 10px 12px; font-size:15px; color: var(--ink); outline:none;
   }
-  .field input:focus{ border-bottom-color: var(--stamp-red); }
+  .field input:focus{ border-color: var(--amber); background: var(--paper-white); }
   .field-error{ font-size:11.5px; color: var(--stamp-red); min-height:14px; }
 
   .auth-submit{
-    margin-top:4px; background: var(--ink); color: var(--paper-white); border:none; border-radius:8px;
+    margin-top:4px; background: var(--ink); color: var(--paper-white); border:none; border-radius:12px;
     padding: 11px; font-size:14px; font-weight:600;
   }
   .auth-submit:hover{ background:#241A10; }
@@ -584,7 +571,7 @@
   /* ---------- Ad slots (placeholders — wire to Google AdSense or similar later) ---------- */
   .ad-slot{
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
-    border: 1px dashed var(--paper-line); border-radius: 8px; background: var(--paper-line-soft);
+    border: 1px solid var(--paper-line); border-radius: 14px; background: var(--paper-line-soft);
     color: var(--ink-soft); text-align:center;
   }
   .ad-label{ font-size:11px; font-weight:700; letter-spacing:.04em; }
