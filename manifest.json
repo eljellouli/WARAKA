@@ -1,0 +1,19 @@
+{
+  "name": "ورقة — دفتر ملاحظات إلكتروني",
+  "short_name": "ورقة",
+  "description": "دفتر ملاحظات إلكتروني عربي مجاني وسريع.",
+  "start_url": "/",
+  "id": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F7F1E8",
+  "theme_color": "#F7F1E8",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
